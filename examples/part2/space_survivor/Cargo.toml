@@ -6,7 +6,7 @@ license.workspace = true
 rust-version.workspace = true
 
 [dependencies]
-bevy.workspace = true
+bevy = { workspace = true, features = ["file_watcher"] }
 
 [[bin]]
 name = "texture_atlas"
@@ -15,3 +15,7 @@ path = "src/bin/13a_texture_atlas.rs"
 [[bin]]
 name = "rendering_pipeline"
 path = "src/bin/13b_rendering_pipeline.rs"
+
+[[bin]]
+name = "material_2d"
+path = "src/bin/13c_material_2d.rs"

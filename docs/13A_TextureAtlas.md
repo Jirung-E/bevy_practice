@@ -17,6 +17,14 @@ cargo run -p space_survivor --bin texture_atlas
 
 사용 에셋 `assets/textures/robot_sheet.png`는 이 교재를 위해 생성하고 프레임 방향, 보폭, 중심축을 보정한 독자 에셋입니다. 4열 × 2행, 전체 512×256 픽셀이며 각 프레임은 128×128 픽셀입니다.
 
+입력이 없으면 Idle 프레임 `0..=3`을 반복합니다.
+
+![TextureAtlas Idle 애니메이션](images/13a_texture_atlas_idle.png)
+
+이동 중에는 Walk 프레임 `4..=7`로 전환합니다. 화면 아래 상태와 프레임 번호로 전환 결과를 함께 확인할 수 있습니다.
+
+![TextureAtlas Walk 애니메이션](images/13a_texture_atlas_walk.png)
+
 ## 핵심 개념
 
 `Handle<Image>`는 GPU 이미지 자체가 아니라 Bevy의 에셋 저장소에 있는 이미지를 가리키는 핸들입니다. `Sprite.image`에 이 핸들을 넣으면 로딩이 끝난 뒤 렌더러가 이미지를 사용합니다.

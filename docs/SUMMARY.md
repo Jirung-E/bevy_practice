@@ -22,6 +22,8 @@
   - [13. 플레이어 이동](13_PlayerMovement.md)
   - [13A. 이미지와 TextureAtlas 애니메이션](13A_TextureAtlas.md)
   - [13B. 2D 렌더링 파이프라인과 WGSL](13B_RenderingPipeline.md)
+  - [13C. Material2d 커스텀 셰이더](13C_Material2d.md)
+  - [13D. Rust-WGSL 연결과 Shader Hot Reload](13D_ShaderHotReload.md)
   - [14. 총알 발사](14_Bullets.md)
   - [15. 적 생성과 이동](15_Enemies.md)
   - [16. 충돌과 점수](16_Collision.md)

@@ -16,6 +16,14 @@
 cargo run -p space_survivor --bin rendering_pipeline
 ```
 
+기본 상태에서는 vertex 변형과 fragment 그라데이션이 모두 꺼져 있습니다.
+
+![vertex와 fragment 효과가 꺼진 기본 사각형](images/13b_pipeline_off.png)
+
+두 단계를 모두 켜면 윤곽과 내부 색상이 각각 달라집니다.
+
+![vertex 변형과 fragment 그라데이션이 적용된 사각형](images/13b_pipeline_on.png)
+
 ## 핵심 개념
 
 ### ECS에서 화면까지

@@ -26,6 +26,36 @@
 {{#include ../../examples/part2/space_survivor/assets/shaders/13b_pipeline.wgsl}}
 ```
 
+## 13C · Material2d 커스텀 셰이더
+
+### Rust
+
+```rust
+{{#include ../../examples/part2/space_survivor/src/bin/13c_material_2d.rs}}
+```
+
+### WGSL
+
+```wgsl
+{{#include ../../examples/part2/space_survivor/assets/shaders/13c_sprite_effect.wgsl}}
+```
+
+## 13D · Rust-WGSL 연결과 Shader Hot Reload
+
+13D는 13C의 실행 프로젝트를 그대로 사용하며, 아래 두 파일을 실행 중 편집합니다.
+
+### Rust
+
+```rust
+{{#include ../../examples/part2/space_survivor/src/bin/13c_material_2d.rs}}
+```
+
+### Hot reload 대상 WGSL
+
+```wgsl
+{{#include ../../examples/part2/space_survivor/assets/shaders/13c_sprite_effect.wgsl}}
+```
+
 ## 공용 구현 · src/lib.rs
 
 ```rust

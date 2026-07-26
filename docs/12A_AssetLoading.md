@@ -15,6 +15,10 @@
 cargo run -p ecs_basics --bin asset_loading
 ```
 
+로드가 끝나면 상태가 `READY`로 바뀌고, `Handle<Image>`가 가리키는 실제 PNG가 화면에 표시됩니다.
+
+![AssetServer로 PNG 로딩을 완료한 READY 화면](images/12a_asset_loading_ready.png)
+
 ## 핵심 개념
 
 Bevy는 실행 파일이 파일을 직접 읽어 즉시 디코딩하도록 만들기보다 `AssetServer`에 에셋 경로를 요청합니다.
