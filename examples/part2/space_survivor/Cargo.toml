@@ -8,3 +8,6 @@ rust-version.workspace = true
 [dependencies]
 bevy.workspace = true
 
+[[bin]]
+name = "texture_atlas"
+path = "src/bin/13a_texture_atlas.rs"

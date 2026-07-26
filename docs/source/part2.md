@@ -6,6 +6,12 @@
 {{#include ../../examples/part2/space_survivor/Cargo.toml}}
 ```
 
+## 13A · 이미지와 TextureAtlas 애니메이션
+
+```rust
+{{#include ../../examples/part2/space_survivor/src/bin/13a_texture_atlas.rs}}
+```
+
 ## 공용 구현 · src/lib.rs
 
 ```rust

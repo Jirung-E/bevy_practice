@@ -1,6 +1,6 @@
 (() => {
   const filename = window.location.pathname.split("/").pop() || "";
-  const match = filename.match(/^(\d{2})_[^/]+\.html$/);
+  const match = filename.match(/^(\d{2})[A-Z]?_[^/]+\.html$/);
   if (!match) return;
 
   const chapter = Number(match[1]);

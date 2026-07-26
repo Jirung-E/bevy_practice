@@ -40,3 +40,6 @@ path = "src/bin/11_messages.rs"
 name = "states"
 path = "src/bin/12_states.rs"
 
+[[bin]]
+name = "asset_loading"
+path = "src/bin/12a_asset_loading.rs"

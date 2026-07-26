@@ -55,3 +55,9 @@
 ```rust
 {{#include ../../examples/part1/ecs_basics/src/bin/12_states.rs}}
 ```
+
+### 12A · AssetServer와 Loading State
+
+```rust
+{{#include ../../examples/part1/ecs_basics/src/bin/12a_asset_loading.rs}}
+```
