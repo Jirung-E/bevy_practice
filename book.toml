@@ -19,7 +19,7 @@ additional-js = ["theme/source-links.js"]
 
 [output.html.fold]
 enable = true
-level = 1
+level = 0
 
 [output.html.search]
 enable = true
