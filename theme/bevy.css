@@ -1,0 +1,76 @@
+:root {
+  --bevy-accent: #a7ef5a;
+  --bevy-accent-soft: rgba(167, 239, 90, 0.14);
+  --bevy-blue: #65c7f7;
+}
+
+.content main {
+  max-width: 920px;
+}
+
+.content h1 {
+  border-bottom: 2px solid var(--bevy-accent);
+  padding-bottom: 0.35em;
+}
+
+.content h2 {
+  border-left: 4px solid var(--bevy-accent);
+  padding-left: 0.6em;
+}
+
+.content a {
+  text-underline-offset: 0.18em;
+}
+
+.content img {
+  display: block;
+  max-height: 720px;
+  margin: 1.5rem auto;
+  border: 1px solid rgba(127, 127, 127, 0.35);
+  border-radius: 0.55rem;
+  box-shadow: 0 0.8rem 2.2rem rgba(0, 0, 0, 0.22);
+}
+
+.content pre {
+  border-left: 3px solid var(--bevy-blue);
+  border-radius: 0.35rem;
+}
+
+.content code {
+  font-variant-ligatures: none;
+}
+
+.content blockquote {
+  background: var(--bevy-accent-soft);
+  border-left-color: var(--bevy-accent);
+}
+
+.sidebar .chapter li.chapter-item.expanded > a {
+  color: var(--bevy-accent);
+}
+
+@media (max-width: 700px) {
+  .content main {
+    padding-inline: 1.2rem;
+  }
+
+  .content img {
+    border-radius: 0.3rem;
+  }
+}
+/* Every chapter links to the real example sources included by mdBook. */
+.full-source-link {
+  align-items: center;
+  background: color-mix(in srgb, var(--links) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--links) 45%, transparent);
+  border-radius: 0.45rem;
+  display: inline-flex;
+  font-weight: 600;
+  margin: 0 0 1.25rem;
+  padding: 0.55rem 0.8rem;
+  text-decoration: none;
+}
+
+.full-source-link:hover {
+  background: color-mix(in srgb, var(--links) 20%, transparent);
+}

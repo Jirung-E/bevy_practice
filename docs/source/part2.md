@@ -1,0 +1,55 @@
+# Part 2 전체 코드 · Space Survivor
+
+## Cargo.toml
+
+```toml
+{{#include ../../examples/part2/space_survivor/Cargo.toml}}
+```
+
+## 공용 구현 · src/lib.rs
+
+```rust
+{{#include ../../examples/part2/space_survivor/src/lib.rs}}
+```
+
+## 챕터별 실행 파일
+
+### 13 · 플레이어 이동
+```rust
+{{#include ../../examples/part2/space_survivor/src/bin/13_player_movement.rs}}
+```
+
+### 14 · 총알
+```rust
+{{#include ../../examples/part2/space_survivor/src/bin/14_bullets.rs}}
+```
+
+### 15 · 적
+```rust
+{{#include ../../examples/part2/space_survivor/src/bin/15_enemies.rs}}
+```
+
+### 16 · 충돌
+```rust
+{{#include ../../examples/part2/space_survivor/src/bin/16_collision.rs}}
+```
+
+### 17 · UI
+```rust
+{{#include ../../examples/part2/space_survivor/src/bin/17_ui.rs}}
+```
+
+### 18 · 사운드
+```rust
+{{#include ../../examples/part2/space_survivor/src/bin/18_sound.rs}}
+```
+
+### 19 · 저장
+```rust
+{{#include ../../examples/part2/space_survivor/src/bin/19_save.rs}}
+```
+
+### 20 · 게임오버
+```rust
+{{#include ../../examples/part2/space_survivor/src/bin/20_game_over.rs}}
+```

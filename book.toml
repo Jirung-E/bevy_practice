@@ -1,0 +1,31 @@
+[book]
+title = "Bevy 0.19 실습 교재"
+authors = ["Bevy Practice Contributors"]
+description = "실행 가능한 프로젝트를 완성하며 배우는 Bevy 실습 교재"
+language = "ko"
+src = "docs"
+
+[build]
+build-dir = "book"
+create-missing = false
+
+[output.html]
+default-theme = "navy"
+preferred-dark-theme = "navy"
+smart-punctuation = true
+additional-css = ["theme/bevy.css"]
+additional-js = ["theme/source-links.js"]
+
+[output.html.fold]
+enable = true
+level = 1
+
+[output.html.search]
+enable = true
+limit-results = 30
+use-boolean-and = true
+boost-title = 2
+boost-hierarchy = 1
+boost-paragraph = 1
+expand = true
+heading-split-level = 3

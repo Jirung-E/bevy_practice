@@ -1,4 +1,4 @@
 /target/
+/book/
 *.pdb
 .DS_Store
-
