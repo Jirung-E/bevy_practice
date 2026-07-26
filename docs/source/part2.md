@@ -12,6 +12,20 @@
 {{#include ../../examples/part2/space_survivor/src/bin/13a_texture_atlas.rs}}
 ```
 
+## 13B · 2D 렌더링 파이프라인과 WGSL
+
+### Rust
+
+```rust
+{{#include ../../examples/part2/space_survivor/src/bin/13b_rendering_pipeline.rs}}
+```
+
+### WGSL
+
+```wgsl
+{{#include ../../examples/part2/space_survivor/assets/shaders/13b_pipeline.wgsl}}
+```
+
 ## 공용 구현 · src/lib.rs
 
 ```rust

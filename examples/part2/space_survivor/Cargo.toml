@@ -11,3 +11,7 @@ bevy.workspace = true
 [[bin]]
 name = "texture_atlas"
 path = "src/bin/13a_texture_atlas.rs"
+
+[[bin]]
+name = "rendering_pipeline"
+path = "src/bin/13b_rendering_pipeline.rs"
