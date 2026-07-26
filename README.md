@@ -2,6 +2,8 @@
 
 Bevy 0.19와 Rust 2024 Edition을 기준으로, 작은 결과물을 직접 만들며 ECS와 게임·GUI 개발을 익히는 한국어 실습 교재입니다.
 
+📖 **온라인 교재:** [https://jirung-e.github.io/bevy_practice/](https://jirung-e.github.io/bevy_practice/)
+
 > 이 교재의 문서와 실행 가능한 예제 코드는 작성자와 OpenAI Codex가 협업하여 제작했습니다.
 
 ## 시작하기
