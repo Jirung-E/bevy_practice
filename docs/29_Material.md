@@ -6,9 +6,13 @@
 - StandardMaterial의 기본 PBR 속성을 조절할 수 있다.
 - Material Handle을 여러 Entity가 공유할 수 있다.
 
+이 장은 [28A. UV와 PBR 텍스처 매핑](28A_UvPbrTextures.md)에서 이미지 기반 표면을 먼저 경험한 뒤, 텍스처와 독립적으로 조정할 수 있는 PBR 수치에 집중합니다.
+
 ## 이번에 만들 결과물
 
 파란 금속 본체, 주황색 렌즈 테두리, 거친 바닥 재질을 적용한 제품 전시 장면을 만듭니다.
+
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
 
 ```bash
 cargo run -p product_showcase --bin 29_material
@@ -60,7 +64,8 @@ Bevy 0.19에서 AmbientLight는 전역 Resource가 아니라 장면에 spawn하�
 
 키 입력으로 Materials의 StandardMaterial 값을 수정해 런타임 재질 편집기를 만드세요.
 
+[선택형 과제 해설과 수행 예시 보기](exercises/part4/29_material.md)
+
 ## 다음 챕터
 
 DirectionalLight와 PointLight, 그림자를 추가해 형태와 재질을 입체적으로 드러냅니다.
-

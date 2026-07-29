@@ -10,6 +10,8 @@
 
 교재의 최종 Production Arena입니다. 프레임 시간 진단을 활성화하고 Score가 바뀔 때만 HUD 문자열을 다시 만듭니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p production_structure --bin 45_optimization
 ```
@@ -78,6 +80,8 @@ fn update_hud(
 ## 심화 과제
 
 프레임 시간, Entity 수, 적 수의 기준값을 기록하는 성능 시나리오를 만들고 변경 전후 결과를 자동 비교하는 벤치마크 절차를 작성하세요.
+
+[선택형 과제 해설과 수행 예시 보기](exercises/part7/45_optimization.md)
 
 ## 다음 챕터
 

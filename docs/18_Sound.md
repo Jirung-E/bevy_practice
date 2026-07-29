@@ -10,6 +10,8 @@
 
 적을 총알로 처치할 때마다 짧은 880Hz 효과음이 한 번 재생됩니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p space_survivor --bin 18_sound
 ```
@@ -67,7 +69,8 @@ commands.spawn((
 
 배경 음악용 OGG 파일을 추가하고 `PlaybackSettings::LOOP`로 반복 재생하세요. 음악과 효과음 볼륨을 별도 Resource로 관리하세요.
 
+[선택형 과제 해설과 수행 예시 보기](exercises/part2/18_sound.md)
+
 ## 다음 챕터
 
 게임을 종료해도 최고 점수가 유지되도록 파일에 저장하고 시작할 때 불러옵니다.
-

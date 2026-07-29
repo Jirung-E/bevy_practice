@@ -10,6 +10,8 @@
 
 마우스를 올리거나 누르면 색이 바뀌는 버튼을 만들고 Clear 버튼으로 FileModel을 초기화합니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p file_lens --bin 23_events
 ```
@@ -58,7 +60,8 @@ Bevy 0.19의 접근성 시스템과 키보드 포커스를 위해 `InputFocus` R
 
 `ClearRequested` Event와 Observer를 추가해 버튼과 단축키가 같은 작업 이벤트를 trigger하도록 재구성하세요.
 
+[선택형 과제 해설과 수행 예시 보기](exercises/part3/23_gui_events.md)
+
 ## 다음 챕터
 
 운영체제에서 창으로 끌어온 파일 경로를 FileDragAndDrop Message로 받습니다.
-

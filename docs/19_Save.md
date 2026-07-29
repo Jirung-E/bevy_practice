@@ -10,6 +10,8 @@
 
 최고 점수를 `save/high_score.txt`에 기록하고 다음 실행에서 다시 불러옵니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p space_survivor --bin 19_save
 ```
@@ -62,7 +64,8 @@ fn save_high_score(value: u32) {
 
 설정, 최고 점수, 통계를 하나의 버전 필드가 있는 저장 구조로 설계하고 RON 또는 JSON으로 직렬화하세요. 임시 파일과 rename을 사용해 저장 중 종료에도 기존 파일을 보호하세요.
 
+[선택형 과제 해설과 수행 예시 보기](exercises/part2/19_save.md)
+
 ## 다음 챕터
 
-체력이 0이 되면 GameOver State로 전환하고 Enter 키로 안전하게 새 게임을 시작합니다.
-
+[19A. 게임 상태 저장과 불러오기](19A_SaveGameRoundTrip.md)에서 위치·체력·점수·진행 상태 전체를 버전 있는 SaveGame으로 확장합니다.

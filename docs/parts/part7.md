@@ -7,3 +7,4 @@ Plugin과 모듈 경계를 설계하고 자산 관리, ECS 아키텍처와 최�
 - [43. Assets 관리](../43_Assets.md)
 - [44. ECS 아키텍처](../44_EcsArchitecture.md)
 - [45. 측정 기반 최적화](../45_Optimization.md)
+- [46. 데스크톱과 WASM 빌드·배포](../46_DesktopWasmDeployment.md)

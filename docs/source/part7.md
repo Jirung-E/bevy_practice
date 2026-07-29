@@ -85,3 +85,35 @@
 ```rust
 {{#include ../../examples/part7/production_structure/src/bin/45_optimization.rs}}
 ```
+
+## 46 · 배포 스크립트
+
+### Windows 패키징
+```powershell
+{{#include ../../scripts/package-desktop.ps1}}
+```
+
+### WASM 빌드
+```powershell
+{{#include ../../scripts/build-wasm.ps1}}
+```
+
+### 로컬 정적 서버
+```javascript
+{{#include ../../scripts/serve-static.mjs}}
+```
+
+### WASM HTML
+```html
+{{#include ../../web/hello_bevy/index.html}}
+```
+
+### GitHub Pages workflow
+```yaml
+{{#include ../../.github/workflows/pages.yml}}
+```
+
+### Windows 배포 검증 workflow
+```yaml
+{{#include ../../.github/workflows/deployment-check.yml}}
+```

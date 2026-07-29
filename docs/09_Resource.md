@@ -10,6 +10,8 @@
 
 적 처치 점수 규칙과 현재 점수를 Resource로 등록하고, 두 프레임 동안 점수를 누적합니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p ecs_basics --bin resource
 ```
@@ -68,7 +70,8 @@ fn main() {
 
 `Local<u32>`를 사용하는 System을 하나 만드세요. Resource와 Local이 각각 어디에 저장되고 몇 개 존재하는지 비교하고, 프레임 카운터에는 어느 쪽이 적합한지 상황별로 설명해 보세요.
 
+과제를 먼저 직접 수행한 뒤 필요할 때 [힌트와 수행 예시](exercises/part1/09_resource.md)를 확인하세요.
+
 ## 다음 챕터
 
 Commands로 Entity 생성·수정·제거를 예약하고, System 실행 중 World 구조를 안전하게 변경합니다.
-

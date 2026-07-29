@@ -1,4 +1,5 @@
 use bevy::{
+    asset::AssetPlugin,
     input::mouse::{MouseMotion, MouseWheel},
     prelude::*,
     window::WindowResolution,
@@ -61,14 +62,21 @@ pub fn run(config: LessonConfig) {
         .insert_resource(config)
         .init_resource::<Orbit>()
         .insert_resource(ClearColor(Color::srgb(0.012, 0.018, 0.032)))
-        .add_plugins(DefaultPlugins.set(WindowPlugin {
-            primary_window: Some(Window {
-                title: "Product Showcase - Bevy 3D Practice".into(),
-                resolution: WindowResolution::new(1100, 720),
-                ..default()
-            }),
-            ..default()
-        }))
+        .add_plugins(
+            DefaultPlugins
+                .set(AssetPlugin {
+                    file_path: format!("{}/assets", env!("CARGO_MANIFEST_DIR")),
+                    ..default()
+                })
+                .set(WindowPlugin {
+                    primary_window: Some(Window {
+                        title: "Product Showcase - Bevy 3D Practice".into(),
+                        resolution: WindowResolution::new(1100, 720),
+                        ..default()
+                    }),
+                    ..default()
+                }),
+        )
         .add_systems(Startup, setup)
         .add_systems(Update, (orbit_input, update_orbit_camera, rotate_product))
         .run();

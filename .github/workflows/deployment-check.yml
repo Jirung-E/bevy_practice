@@ -1,0 +1,38 @@
+name: Validate deployment packages
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows-package:
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Build Windows deployment folder
+        shell: pwsh
+        run: ./scripts/package-desktop.ps1
+
+      - name: Verify Windows artifact
+        shell: pwsh
+        run: |
+          $required = @(
+            "target/dist/windows/space_survivor/20_game_over.exe",
+            "target/dist/windows/space_survivor/assets",
+            "target/dist/windows/space_survivor/THIRD_PARTY_LICENSES.md"
+          )
+          foreach ($path in $required) {
+            if (-not (Test-Path -LiteralPath $path)) {
+              throw "Missing Windows artifact: $path"
+            }
+          }
+          $empty = Get-ChildItem "target/dist/windows/space_survivor" -File -Recurse |
+            Where-Object Length -EQ 0
+          if ($empty) {
+            throw "Empty deployment file: $($empty.FullName -join ', ')"
+          }

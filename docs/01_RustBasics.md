@@ -101,7 +101,8 @@ cargo run
 
 `take_damage(player: &mut Player, amount: u32)` 함수를 작성하세요. 체력은 0보다 작아지지 않아야 하며 0이 되면 상태를 `Dead`로 바꿔야 합니다. `u32::saturating_sub`를 조사해 사용해 보세요.
 
+과제를 먼저 직접 수행한 뒤 필요할 때 [힌트와 수행 예시](exercises/part0/01_rust_basics.md)를 확인하세요.
+
 ## 다음 챕터
 
 다음 챕터에서는 Cargo 패키지와 워크스페이스를 이해하고, 교재의 여러 실행 예제가 어떻게 함께 관리되는지 살펴봅니다.
-

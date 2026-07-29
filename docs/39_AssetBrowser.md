@@ -10,6 +10,8 @@
 
 하단 Asset Browser에서 Cube 또는 Sphere 버튼을 눌러 새 Editable Entity를 생성하고 즉시 선택합니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p world_editor --bin 39_asset_browser
 ```
@@ -62,7 +64,8 @@ log.lines.push(format!("Created cube {entity:?}"));
 
 assets 폴더를 비동기로 스캔하고 확장자별 Asset 타입, 로드 상태, 썸네일을 가진 카드형 브라우저를 설계하세요.
 
+[선택형 과제 해설과 수행 예시 보기](exercises/part6/39_asset_browser.md)
+
 ## 다음 챕터
 
 선택, 이동, 생성, 삭제 작업을 최근 로그 Console에 표시합니다.
-

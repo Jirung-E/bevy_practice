@@ -10,6 +10,8 @@
 
 왼쪽 Hierarchy 패널에 Blue Cube와 Orange Sphere를 표시하고 Select Next 버튼으로 선택 대상을 순환하며 Delete로 제거합니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p world_editor --bin 36_hierarchy
 ```
@@ -65,7 +67,8 @@ fn update_hierarchy(
 
 ChildOf 관계를 재귀적으로 읽어 들여 들여쓰기된 트리를 만들고, 순환 관계가 생길 수 없는 이유를 Bevy 관계 API 관점에서 설명하세요.
 
+[선택형 과제 해설과 수행 예시 보기](exercises/part6/36_hierarchy.md)
+
 ## 다음 챕터
 
 선택된 Entity의 Transform 값을 Inspector에 표시하고 버튼으로 수정합니다.
-

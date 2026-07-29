@@ -32,6 +32,30 @@ jobs:
       - name: Build book
         run: mdbook build
 
+      - name: Install WASM target
+        run: rustup target add wasm32-unknown-unknown
+
+      - name: Install matching wasm-bindgen CLI
+        run: cargo install wasm-bindgen-cli --version 0.2.126 --locked
+
+      - name: Build browser demo
+        shell: pwsh
+        run: ./scripts/build-wasm.ps1 -OutputDirectory book/demos/hello_bevy
+
+      - name: Verify browser artifact
+        shell: pwsh
+        run: |
+          $required = @(
+            "book/demos/hello_bevy/index.html",
+            "book/demos/hello_bevy/hello_bevy.js",
+            "book/demos/hello_bevy/hello_bevy_bg.wasm"
+          )
+          foreach ($path in $required) {
+            if (-not (Test-Path -LiteralPath $path)) {
+              throw "Missing WASM artifact: $path"
+            }
+          }
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v5
         with:

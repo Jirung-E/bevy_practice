@@ -20,8 +20,17 @@ rust-version = "1.95"
 bevy = "0.19"
 avian3d = "0.7"
 bevy_landmass = "0.12"
+ron = "0.12"
+serde = { version = "1", features = ["derive"] }
 
 # Bevy의 전체 기능을 MSVC로 링크하면 디버그 PDB 크기 제한(LNK1140)에
 # 도달할 수 있습니다. 실습용 dev 빌드는 PDB를 만들지 않아 안정적으로 링크합니다.
 [profile.dev]
 debug = 0
+
+# 배포 빌드는 crate 경계를 넘어 최적화하고 디버그 정보를 제거합니다.
+# 첫 빌드는 느려지지만 실행 파일과 WASM 크기를 줄이는 데 도움이 됩니다.
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = "debuginfo"

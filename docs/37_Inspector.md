@@ -10,6 +10,8 @@
 
 오른쪽 Inspector에 선택된 이름과 Transform 좌표를 표시하고 X/Y/Z 증감 버튼으로 위치를 편집합니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p world_editor --bin 37_inspector
 ```
@@ -64,7 +66,8 @@ fn move_selected(
 
 ReflectComponent를 사용해 등록된 Component의 필드 목록을 읽고 f32, Vec3, bool을 공통 위젯으로 편집하는 Inspector를 설계하세요.
 
+[선택형 과제 해설과 수행 예시 보기](exercises/part6/37_inspector.md)
+
 ## 다음 챕터
 
 3D 카메라, 선택 Gizmo, 공전 조작을 추가해 World를 직접 보는 Viewport를 만듭니다.
-

@@ -10,6 +10,8 @@
 
 제목, 파일 목록 패널, 미리보기 패널, 하단 버튼과 상태 표시줄을 갖춘 File Lens 인터페이스를 만듭니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p file_lens --bin 22_ui
 ```
@@ -65,7 +67,8 @@ commands.spawn((
 
 파일 목록에 자식 Entity를 하나씩 생성하는 구조로 바꾸고, 목록이 길어질 때 ScrollPosition과 overflow를 적용하세요.
 
+[선택형 과제 해설과 수행 예시 보기](exercises/part3/22_gui_layout.md)
+
 ## 다음 챕터
 
 Clear와 Save Report 버튼의 Interaction을 읽고 마우스 상태에 따라 색을 바꿉니다.
-

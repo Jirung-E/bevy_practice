@@ -74,7 +74,8 @@ cargo check --workspace
 
 Bevy 공식 사이트의 [소개](https://bevy.org/learn/quick-start/introduction/)를 읽고 Bevy의 설계 목표 중 자신에게 가장 중요한 항목 하나를 골라 이유를 적어 보세요.
 
+과제를 먼저 수행한 뒤 필요할 때 [확인 기준과 정리 예시](exercises/part0/00_introduction.md)를 확인하세요.
+
 ## 다음 챕터
 
 다음 챕터에서는 Bevy 코드를 읽고 수정하는 데 꼭 필요한 Rust 문법만 작은 프로그램으로 연습합니다.
-

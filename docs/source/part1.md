@@ -61,3 +61,15 @@
 ```rust
 {{#include ../../examples/part1/ecs_basics/src/bin/12a_asset_loading.rs}}
 ```
+
+### 12B · Reflect와 DynamicWorld(Scene)
+
+```rust
+{{#include ../../examples/part1/ecs_basics/src/bin/12b_dynamic_world.rs}}
+```
+
+### 12C · Scene과 Save Game 설계
+
+```rust
+{{#include ../../examples/part1/ecs_basics/src/bin/12c_save_game_model.rs}}
+```

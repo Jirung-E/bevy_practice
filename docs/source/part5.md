@@ -27,6 +27,16 @@
 {{#include ../../examples/part5/tps_training/src/bin/33_animation.rs}}
 ```
 
+### 33A · glTF 캐릭터와 실제 애니메이션
+```rust
+{{#include ../../examples/part5/tps_training/src/bin/33a_gltf_character.rs}}
+```
+
+#### Fox 에셋 출처와 라이선스
+```markdown
+{{#include ../../examples/part5/tps_training/assets/models/fox/SOURCE.md}}
+```
+
 ### 34 · Physics
 ```rust
 {{#include ../../examples/part5/tps_training/src/bin/34_physics.rs}}

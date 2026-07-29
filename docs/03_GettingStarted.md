@@ -10,11 +10,15 @@
 
 `Bevy Practice`라는 제목의 창을 열고, 어두운 배경 중앙에 안내 문구를 표시합니다. 이 예제는 이후 ECS 개념을 화면에서 확인하는 출발점입니다.
 
-실행 명령:
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 저장소를 사용하지 않고 본문만 따라 하는 경우에는 자신이 만든 프로젝트 디렉터리에서 `cargo run`을 실행하세요.
 
 ```bash
 cargo run -p hello_bevy
 ```
+
+![어두운 창 중앙에 Hello, Bevy 0.19!가 표시된 첫 Bevy 예제](images/03_hello_bevy.png)
+
+> 이 장에서는 코드를 먼저 완성해 Bevy 애플리케이션의 전체 모양을 확인합니다. `Entity`, `Component`, `System`, `Commands`처럼 아직 낯선 구성요소는 여기서 모두 외울 필요가 없습니다. Part 1의 05장부터 하나씩 분리해서 배우고 다시 사용합니다.
 
 ## 핵심 개념
 
@@ -88,6 +92,8 @@ fn setup(mut commands: Commands) {
 
 두 번째 Text2d Entity를 생성해 첫 문구 아래에 `Press SPACE to start`를 표시하세요. `Transform::from_xyz(0.0, -70.0, 0.0)`를 같은 Entity에 추가해 위치를 조정해 보세요.
 
+과제를 먼저 직접 수행한 뒤 필요할 때 [힌트와 수행 예시](exercises/part0/03_getting_started.md)를 확인하세요.
+
 ## 다음 챕터
 
-다음 챕터에서는 코드 편집기, rust-analyzer, 플랫폼별 필수 도구를 점검하고 컴파일·실행 문제를 진단하는 방법을 익힙니다.
+다음 챕터에서는 Rust와 Bevy 버전을 확인하고, 필요할 때 빌드 시간을 줄이는 개발 설정을 적용합니다.

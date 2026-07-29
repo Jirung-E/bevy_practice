@@ -14,6 +14,8 @@ Part 6의 완성 World Editor입니다. 아래 Console에 최근 선택·이동�
 
 완성 화면은 Hierarchy, Inspector, Viewport, Asset Browser, Console 패널로 구성됩니다. Viewport에서는 선택된 Entity에 노란 경계와 이동 축이 표시됩니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p world_editor --bin 40_console
 ```
@@ -64,6 +66,8 @@ fn update_console(
 
 EditableText를 사용해 `spawn cube`, `select next`, `move x 1.0` 같은 명령을 파싱하고 기존 EditorAction 실행 경로를 재사용하세요.
 
+[선택형 과제 해설과 수행 예시 보기](exercises/part6/40_console.md)
+
 ## 다음 챕터
 
-Part 7에서는 지금까지의 단일 파일 프로젝트를 Plugin, 모듈, Asset 계층으로 재구성하고 ECS 아키텍처와 최적화를 적용합니다.
+다음 장에서는 Part 1에서 배운 Reflect와 DynamicWorld를 에디터에 적용해 Hierarchy와 Inspector 값을 Scene 문서로 저장하고 불러옵니다.

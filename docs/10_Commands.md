@@ -10,6 +10,8 @@
 
 적 세 명을 생성하고, 매 프레임 한 명에게 Defeated 표식을 붙인 뒤 해당 Entity를 제거합니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p ecs_basics --bin commands
 ```
@@ -69,6 +71,8 @@ fn remove_defeated(mut commands: Commands, defeated: Query<Entity, With<Defeated
 ## 심화 과제
 
 적 제거 직전에 새 `Loot` Entity를 생성하세요. Loot에 원래 적의 위치를 복사하려면 Query가 어떤 데이터를 추가로 가져와야 하는지 설계하고 구현해 보세요.
+
+과제를 먼저 직접 수행한 뒤 필요할 때 [힌트와 수행 예시](exercises/part1/10_commands.md)를 확인하세요.
 
 ## 다음 챕터
 

@@ -9,4 +9,5 @@
 - [17. 게임 UI](../17_GameUI.md)
 - [18. 사운드](../18_Sound.md)
 - [19. 최고 점수 저장](../19_Save.md)
+- [19A. 게임 상태 저장과 불러오기](../19A_SaveGameRoundTrip.md)
 - [20. 게임오버와 재시작](../20_GameOver.md)

@@ -18,6 +18,8 @@ Part 2의 완성 게임입니다. 체력을 모두 잃으면 최종 점수와 �
 
 HP가 0이 되면 최종 점수와 최고 점수, Enter 재시작 안내가 중앙에 표시됩니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p space_survivor --bin 20_game_over
 ```
@@ -80,6 +82,8 @@ fn restart_game(
 ## 심화 과제
 
 Menu와 Paused State를 추가하세요. 일시정지 중에는 게임 시간이 멈추고 UI 입력만 처리되어야 하며, 다시 Playing으로 돌아왔을 때 적이 한꺼번에 생성되지 않아야 합니다.
+
+[선택형 과제 해설과 수행 예시 보기](exercises/part2/20_game_over.md)
 
 ## 다음 챕터
 

@@ -10,6 +10,8 @@
 
 청록색 우주선을 WASD 또는 방향키로 움직이는 첫 2D 게임 화면을 만듭니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p space_survivor --bin 13_player_movement
 ```
@@ -62,7 +64,8 @@ fn move_player(
 
 이동 입력이 없을 때 서서히 멈추는 가속·감속 이동을 구현하세요. Velocity Component를 추가하고 최대 속도를 제한하세요.
 
+과제를 먼저 직접 수행한 뒤 필요할 때 [힌트와 수행 예시](exercises/part2/13_player_movement.md)를 확인하세요.
+
 ## 다음 챕터
 
 Space 키를 누르면 플레이어 위치에서 위쪽으로 날아가는 총알을 생성합니다.
-

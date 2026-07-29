@@ -51,13 +51,7 @@ fn setup(
     commands.spawn(Camera2d);
 
     let image = asset_server.load("textures/robot_sheet.png");
-    let layout = layouts.add(TextureAtlasLayout::from_grid(
-        FRAME_SIZE,
-        4,
-        2,
-        None,
-        None,
-    ));
+    let layout = layouts.add(TextureAtlasLayout::from_grid(FRAME_SIZE, 4, 2, None, None));
 
     commands.spawn((
         Player,

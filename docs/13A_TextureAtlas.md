@@ -11,6 +11,8 @@
 
 WASD 또는 방향키로 움직이는 로봇을 만듭니다. 멈추면 위쪽 네 프레임의 Idle 애니메이션이, 움직이면 아래쪽 네 프레임의 Walk 애니메이션이 재생됩니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p space_survivor --bin texture_atlas
 ```
@@ -81,6 +83,8 @@ commands.spawn(Sprite {
 ## 심화 과제
 
 `AnimationClip2d` Component를 직접 설계해 시작 인덱스, 끝 인덱스, FPS, 반복 여부를 데이터로 분리하세요. Idle과 Walk 전환 코드에서 숫자 `0`, `3`, `4`, `7`이 나타나지 않게 리팩터링해 보세요.
+
+과제를 먼저 직접 수행한 뒤 필요할 때 [힌트와 수행 예시](exercises/part2/13a_texture_atlas.md)를 확인하세요.
 
 ## 다음 챕터
 

@@ -89,7 +89,8 @@ cargo run -p hello_bevy
 
 `cargo metadata --no-deps`를 실행해 워크스페이스 패키지 정보를 살펴보세요. 출력에서 `hello_bevy`의 매니페스트 경로와 Edition을 찾아보세요.
 
+과제를 먼저 수행한 뒤 필요할 때 [확인 명령과 결과 읽는 법](exercises/part0/02_cargo.md)을 확인하세요.
+
 ## 다음 챕터
 
 다음 챕터에서는 워크스페이스에 포함된 첫 Bevy 프로그램을 읽고 실제 창을 실행합니다.
-

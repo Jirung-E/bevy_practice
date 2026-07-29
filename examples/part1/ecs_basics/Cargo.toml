@@ -7,6 +7,8 @@ rust-version.workspace = true
 
 [dependencies]
 bevy.workspace = true
+ron.workspace = true
+serde.workspace = true
 
 [[bin]]
 name = "entity"
@@ -43,3 +45,15 @@ path = "src/bin/12_states.rs"
 [[bin]]
 name = "asset_loading"
 path = "src/bin/12a_asset_loading.rs"
+
+[[bin]]
+name = "dynamic_world"
+path = "src/bin/12b_dynamic_world.rs"
+
+[[bin]]
+name = "dynamic_world_solution"
+path = "src/bin/dynamic_world_solution.rs"
+
+[[bin]]
+name = "save_game_model"
+path = "src/bin/12c_save_game_model.rs"

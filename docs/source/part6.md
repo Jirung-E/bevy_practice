@@ -36,3 +36,8 @@
 ```rust
 {{#include ../../examples/part6/world_editor/src/bin/40_console.rs}}
 ```
+
+### 40A · World Editor Scene 저장과 불러오기
+```rust
+{{#include ../../examples/part6/world_editor/src/bin/40a_scene_io.rs}}
+```

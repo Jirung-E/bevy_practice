@@ -10,6 +10,8 @@
 
 Player 표식, 체력, 위치를 가진 플레이어 Entity를 생성합니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p ecs_basics --bin component
 ```
@@ -70,13 +72,15 @@ fn spawn_player(mut commands: Commands) {
 
 1. `Name(String)` Component를 추가하세요.
 2. `Mana(u32)`를 추가하고 초기값을 50으로 설정하세요.
-3. Player가 없는 적 Entity를 `Health`와 `Position` 조합으로 생성하세요.
+3. 플레이어와 적을 구분할 수 있도록 적절한 marker Component를 설계하세요.
+4. 플레이어와 적이 `Health`, `Position`을 공유하면서도 서로 다른 대상으로 분류되도록 두 Entity의 Component 조합을 구성하세요.
 
 ## 심화 과제
 
 플레이어 생성에 필요한 Component 조합을 반환하는 `fn player_bundle() -> impl Bundle` 함수를 작성하세요. 이후 초기값이 다른 두 플레이어를 만들려면 어떤 매개변수가 필요한지도 생각해 보세요.
 
+과제를 먼저 직접 수행한 뒤 필요할 때 [힌트와 수행 예시](exercises/part1/06_component.md)를 확인하세요.
+
 ## 다음 챕터
 
 System을 추가해 Component 데이터를 읽고 플레이어의 위치를 변경합니다.
-

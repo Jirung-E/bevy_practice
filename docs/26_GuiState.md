@@ -14,6 +14,8 @@ Part 3의 완성 File Lens입니다. 파일이 없으면 Empty, 정상 파일을
 
 왼쪽에는 드롭한 파일 목록, 오른쪽에는 마지막 파일의 미리보기가 표시됩니다. 화면 아래에는 `CLEAR`, `SAVE REPORT`, 처리 상태가 보여야 합니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p file_lens --bin 26_state
 ```
@@ -75,6 +77,8 @@ match inspect_file(path, true) {
 ## 심화 과제
 
 파일 목록을 Entity와 Component로 관리하는 버전과 현재 Resource 벡터 버전을 각각 구현해 검색, 선택, 삭제, 정렬 요구사항에서의 장단점을 비교하세요.
+
+[선택형 과제 해설과 수행 예시 보기](exercises/part3/26_gui_state.md)
 
 ## 다음 챕터
 

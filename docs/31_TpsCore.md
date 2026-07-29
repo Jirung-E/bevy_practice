@@ -10,6 +10,8 @@
 
 WASD로 캡슐 캐릭터를 움직이는 3D 훈련장을 만듭니다. 바닥, 장애물, 조명, 고정 카메라가 함께 배치됩니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p tps_training --bin 31_tps_core
 ```
@@ -62,7 +64,8 @@ commands.spawn((
 
 걷기, 달리기, 정지 속도를 담은 MovementSettings Resource를 만들고 입력 System에서 상수를 제거하세요.
 
+[선택형 과제 해설과 수행 예시 보기](exercises/part5/31_tps_core.md)
+
 ## 다음 챕터
 
 카메라 yaw를 기준으로 입력 방향을 회전시켜 화면 기준 TPS 조작을 구현합니다.
-

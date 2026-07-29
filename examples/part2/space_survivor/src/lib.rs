@@ -1,4 +1,5 @@
 use bevy::{
+    asset::AssetPlugin,
     audio::{AddAudioSource, ChannelCount, SampleRate, Source, Volume},
     math::ops,
     prelude::*,
@@ -205,15 +206,25 @@ pub fn run(config: LessonConfig) {
         .init_resource::<SpawnSequence>()
         .init_resource::<HighScore>()
         .add_message::<EnemyDefeated>()
-        .add_plugins(DefaultPlugins.set(WindowPlugin {
-            primary_window: Some(Window {
-                title: "Space Survivor - Bevy Practice".into(),
-                resolution: WindowResolution::new(WINDOW_WIDTH as u32, WINDOW_HEIGHT as u32),
-                resizable: false,
-                ..default()
-            }),
-            ..default()
-        }))
+        .add_plugins(
+            DefaultPlugins
+                .set(AssetPlugin {
+                    file_path: format!("{}/assets", env!("CARGO_MANIFEST_DIR")),
+                    ..default()
+                })
+                .set(WindowPlugin {
+                    primary_window: Some(Window {
+                        title: "Space Survivor - Bevy Practice".into(),
+                        resolution: WindowResolution::new(
+                            WINDOW_WIDTH as u32,
+                            WINDOW_HEIGHT as u32,
+                        ),
+                        resizable: false,
+                        ..default()
+                    }),
+                    ..default()
+                }),
+        )
         .add_audio_source::<BeepAudio>()
         .init_state::<GameState>()
         .add_systems(Startup, (setup_camera, setup_audio, load_high_score))

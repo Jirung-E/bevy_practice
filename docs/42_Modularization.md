@@ -10,6 +10,8 @@
 
 동일한 Plugin 셸을 여러 Rust 모듈로 구성하고 crate 루트가 외부에 노출할 최소 API만 re-export합니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p production_structure --bin 42_modules
 ```
@@ -74,7 +76,8 @@ pub fn run(config: LessonConfig) {
 
 GameplayPlugin을 별도 workspace library crate로 옮긴다고 가정하고 필요한 공개 계약과 순환 의존 방지 규칙을 설계하세요.
 
+[선택형 과제 해설과 수행 예시 보기](exercises/part7/42_modularization.md)
+
 ## 다음 챕터
 
 Mesh와 Material 생성·로딩을 ArenaAssets Resource에 모아 시스템마다 에셋을 찾는 문제를 해결합니다.
-

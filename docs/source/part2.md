@@ -99,6 +99,11 @@
 {{#include ../../examples/part2/space_survivor/src/bin/19_save.rs}}
 ```
 
+### 19A · 게임 상태 저장과 불러오기
+```rust
+{{#include ../../examples/part2/space_survivor/src/bin/19a_save_game.rs}}
+```
+
 ### 20 · 게임오버
 ```rust
 {{#include ../../examples/part2/space_survivor/src/bin/20_game_over.rs}}

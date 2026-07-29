@@ -10,6 +10,8 @@
 
 Production Arena의 플레이 가능한 단계입니다. WASD로 이동하고 Space를 누르면 반경 4 안의 가장 가까운 적을 제거해 100점을 얻습니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p production_structure --bin 44_ecs_architecture
 ```
@@ -73,7 +75,8 @@ SystemSet을 지나치게 세분화하면 모든 System이 직렬화됩니다. �
 
 고정 시간 Simulation과 가변 시간 Presentation을 분리하고 입력 버퍼를 통해 Update와 FixedUpdate 사이 데이터를 전달하세요.
 
+[선택형 과제 해설과 수행 예시 보기](exercises/part7/44_ecs_architecture.md)
+
 ## 다음 챕터
 
 프로파일링 진단과 변경 감지를 적용하고, 추측이 아닌 측정 기반 최적화 절차를 정리합니다.
-

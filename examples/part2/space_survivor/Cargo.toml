@@ -7,6 +7,8 @@ rust-version.workspace = true
 
 [dependencies]
 bevy = { workspace = true, features = ["file_watcher"] }
+ron.workspace = true
+serde.workspace = true
 
 [[bin]]
 name = "texture_atlas"

@@ -10,6 +10,8 @@
 
 Player 한 명과 Enemy 두 명을 만든 뒤, Enemy의 체력만 10씩 감소시키고 각 Entity ID와 남은 체력을 출력합니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p ecs_basics --bin query
 ```
@@ -67,7 +69,8 @@ fn damage_enemies(
 
 `Changed<Health>` 필터를 사용하는 두 번째 System을 작성해 이번 프레임에 체력이 바뀐 대상만 출력하세요. 변경 감지가 값의 비교가 아니라 변경 접근을 추적한다는 점도 실험해 보세요.
 
+과제를 먼저 직접 수행한 뒤 필요할 때 [힌트와 수행 예시](exercises/part1/08_query.md)를 확인하세요.
+
 ## 다음 챕터
 
 Entity에 속하지 않는 점수와 게임 규칙을 Resource로 관리합니다.
-

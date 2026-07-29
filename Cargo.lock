@@ -2595,6 +2595,8 @@ name = "ecs_basics"
 version = "0.1.0"
 dependencies = [
  "bevy",
+ "ron",
+ "serde",
 ]
 
 [[package]]
@@ -5489,6 +5491,8 @@ name = "space_survivor"
 version = "0.1.0"
 dependencies = [
  "bevy",
+ "ron",
+ "serde",
 ]
 
 [[package]]
@@ -6847,6 +6851,8 @@ name = "world_editor"
 version = "0.1.0"
 dependencies = [
  "bevy",
+ "ron",
+ "serde",
 ]
 
 [[package]]

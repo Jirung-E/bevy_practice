@@ -10,6 +10,8 @@
 
 캐릭터가 이동할 때 캡슐 모델이 걸음 주기에 맞춰 위아래로 움직이고 좌우로 기울어집니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p tps_training --bin 33_animation
 ```
@@ -55,7 +57,8 @@ fn animate_player(
 
 무료 glTF 캐릭터와 Idle/Walk 클립을 추가하고 AnimationGraph에서 0.2초 동안 전환 혼합하세요. 에셋 라이선스도 문서에 기록하세요.
 
+[선택형 과제 해설과 수행 예시 보기](exercises/part5/33_animation.md)
+
 ## 다음 챕터
 
-Avian 0.7을 적용해 중력, 지면, 장애물 충돌, 점프를 실제 물리 World에서 처리합니다.
-
+다음 장에서는 지금 만든 절차적 흔들림을 실제 glTF 캐릭터의 Skin·Survey·Walk·Run 애니메이션으로 교체합니다.

@@ -12,6 +12,8 @@
 
 하나의 사각형에 직접 작성한 vertex shader와 fragment shader를 적용합니다. `V` 키는 정점 위치 변형을, `F` 키는 UV 기반 픽셀 색상 계산을 독립적으로 켜고 끕니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p space_survivor --bin rendering_pipeline
 ```
@@ -154,6 +156,8 @@ WGSL 문법이나 binding이 틀리면 Rust 컴파일은 성공할 수 있지만
 ## 심화 과제
 
 `options.z`를 시간 값으로 사용해 정점이 좌우로 흔들리도록 만드세요. Rust System에서 Material의 uniform만 변경하고 Mesh와 Transform은 변경하지 않아야 합니다. 그 뒤 GPU 애니메이션과 `Transform` 이동의 차이를 정리하세요.
+
+과제를 먼저 직접 수행한 뒤 필요할 때 [힌트와 수행 예시](exercises/part2/13b_rendering_pipeline.md)를 확인하세요.
 
 ## 다음 챕터
 

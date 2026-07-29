@@ -1,4 +1,7 @@
-use bevy::{asset::{AssetPlugin, LoadState}, prelude::*};
+use bevy::{
+    asset::{AssetPlugin, LoadState},
+    prelude::*,
+};
 
 const PREVIEW_PATH: &str = "images/space_survivor_preview.png";
 
@@ -35,10 +38,7 @@ fn main() {
         .init_state::<AppState>()
         .add_systems(Startup, setup_camera)
         .add_systems(OnEnter(AppState::Loading), begin_loading)
-        .add_systems(
-            Update,
-            check_loading.run_if(in_state(AppState::Loading)),
-        )
+        .add_systems(Update, check_loading.run_if(in_state(AppState::Loading)))
         .add_systems(OnEnter(AppState::Ready), show_loaded_asset)
         .add_systems(OnEnter(AppState::Failed), show_fallback)
         .run();

@@ -12,6 +12,8 @@
 
 13A에서 만든 로봇 이미지를 커스텀 Material로 렌더링합니다. 로봇은 시간 uniform에 따라 물결치며, `H`를 누르면 잠시 붉게 점멸합니다. 이동은 WASD 또는 방향키를 사용합니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p space_survivor --bin material_2d
 ```
@@ -159,6 +161,8 @@ Material asset은 여러 Entity가 공유할 수 있습니다. 공유 Material�
 ## 심화 과제
 
 `HitFlash` 외에 `Poisoned`, `Shielded` Component를 추가하고 상태마다 다른 색상 효과를 적용하세요. 게임 System은 상태 Component만 변경하고, WGSL 값으로 변환하는 코드는 `SpriteEffectPlugin` 안에 유지하세요.
+
+과제를 먼저 직접 수행한 뒤 필요할 때 [힌트와 수행 예시](exercises/part2/13c_material2d.md)를 확인하세요.
 
 ## 다음 챕터
 

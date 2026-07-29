@@ -10,6 +10,8 @@
 
 적 처치 System이 `EnemyDefeated` Message를 쓰고, 점수 System이 이를 읽어 누적 점수를 갱신합니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p ecs_basics --bin messages
 ```
@@ -72,7 +74,8 @@ App에는 `.add_message::<EnemyDefeated>()`를 등록하고 두 System을 `chain
 
 `commands.trigger(...)`와 `Observer`를 사용하는 즉시 반응 예제를 공식 문서에서 찾아 같은 적 처치 상황으로 다시 작성하세요. Message 방식과 실행 시점, 결합도, 전파 범위를 비교하세요.
 
+과제를 먼저 직접 수행한 뒤 필요할 때 [힌트와 수행 예시](exercises/part1/11_messages.md)를 확인하세요.
+
 ## 다음 챕터
 
 Menu, Playing, GameOver 상태를 만들고 상태에 따라 실행할 System을 분리합니다.
-

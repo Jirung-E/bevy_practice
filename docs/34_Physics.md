@@ -10,6 +10,8 @@
 
 플레이어가 중력의 영향을 받고 바닥과 장애물에 충돌하며 Space로 점프하는 물리 기반 TPS 훈련장을 만듭니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p tps_training --bin 34_physics
 ```
@@ -66,7 +68,8 @@ if jump_requested && is_near_ground {
 
 Avian SpatialQuery의 shape cast로 지면을 감지하고 경사면 최대 각도, 계단 오르기, 공중 제어를 갖춘 캐릭터 컨트롤러로 발전시키세요.
 
+[선택형 과제 해설과 수행 예시 보기](exercises/part5/34_physics.md)
+
 ## 다음 챕터
 
 bevy_landmass NavMesh 위에 적 에이전트를 만들고 플레이어를 경로 목표로 지정합니다.
-

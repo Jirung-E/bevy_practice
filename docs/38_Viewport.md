@@ -10,6 +10,8 @@
 
 Hierarchy와 Inspector 뒤에 3D World를 렌더링하고, 선택한 대상에 노란 경계 상자와 축 Gizmo를 표시합니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p world_editor --bin 38_viewport
 ```
@@ -66,7 +68,8 @@ fn draw_selection_gizmo(
 
 카메라 viewport를 중앙 패널의 물리 픽셀 영역으로 제한하고 창 리사이즈·DPI 변경 때 갱신하세요.
 
+[선택형 과제 해설과 수행 예시 보기](exercises/part6/38_viewport.md)
+
 ## 다음 챕터
 
 Asset Browser의 Cube와 Sphere 버튼으로 새 World Entity를 생성합니다.
-

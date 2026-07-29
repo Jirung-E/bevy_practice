@@ -10,6 +10,8 @@
 
 Cuboid 본체, Torus 테두리, Sphere 렌즈를 가진 카메라 모양 제품과 Plane 바닥을 만듭니다. 제품은 천천히 회전합니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p product_showcase --bin 28_mesh
 ```
@@ -60,7 +62,8 @@ commands
 
 같은 Mesh Handle을 공유하는 제품을 여러 개 생성하고, 메모리에서 Mesh가 복제되지 않는 이유를 설명하세요.
 
+[선택형 과제 해설과 수행 예시 보기](exercises/part4/28_mesh.md)
+
 ## 다음 챕터
 
-StandardMaterial의 색상, 금속성, 거칠기를 조정해 PBR 표면을 만듭니다.
-
+정점에 저장한 UV를 실제 이미지의 픽셀과 연결하고 Base Color, Normal, Emissive 맵을 함께 적용합니다.

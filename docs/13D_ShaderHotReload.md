@@ -11,6 +11,8 @@
 
 13C 예제를 실행한 채 WGSL 파일의 흔들림 배율과 피격색을 수정합니다. 저장 후 새 shader가 자동으로 컴파일되어 화면에 반영되는 과정을 확인합니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p space_survivor --bin material_2d
 ```
@@ -150,6 +152,8 @@ Material binding 구조를 바꾸는 실습은 더 조심해야 합니다. Rust 
 ## 심화 과제
 
 shader reload 성공과 실패를 화면 UI에 표시하는 개발 전용 Plugin을 설계하세요. `AssetEvent<Shader>`를 읽되 게임 규칙이나 저장 데이터에는 개발 도구 상태가 섞이지 않게 구성하세요.
+
+과제를 먼저 직접 수행한 뒤 필요할 때 [힌트와 수행 예시](exercises/part2/13d_shader_hot_reload.md)를 확인하세요.
 
 ## 다음 챕터
 

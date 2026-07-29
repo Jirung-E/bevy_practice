@@ -10,6 +10,8 @@
 
 플레이어와 적이 공유할 Mesh와 Material을 ArenaAssets에 등록합니다. 아직 Gameplay를 활성화하지 않고 에셋 계층만 준비합니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p production_structure --bin 43_assets
 ```
@@ -60,7 +62,8 @@ impl FromWorld for ArenaAssets {
 
 에셋 그룹별 Loading State, 진행률, 실패 목록, fallback 에셋을 관리하는 AssetLoadingPlugin을 설계하세요.
 
+[선택형 과제 해설과 수행 예시 보기](exercises/part7/43_assets.md)
+
 ## 다음 챕터
 
 입력, 시뮬레이션, 피드백 SystemSet과 Message를 사용해 기능 결합도를 낮춘 Gameplay를 구성합니다.
-

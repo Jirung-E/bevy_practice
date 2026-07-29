@@ -10,6 +10,8 @@
 
 CorePlugin과 PresentationPlugin만으로 실행되는 Production Arena의 최소 셸을 만듭니다. 화면에는 카메라, 조명, `PLUGIN SHELL READY` HUD가 표시됩니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p production_structure --bin 41_plugin
 ```
@@ -66,7 +68,8 @@ impl Plugin for CorePlugin {
 
 클라이언트, 전용 서버, 자동 테스트용 PluginGroup을 각각 설계하고 공통·전용 Plugin 조합을 비교하세요.
 
+[선택형 과제 해설과 수행 예시 보기](exercises/part7/41_plugin.md)
+
 ## 다음 챕터
 
 Plugin 구현을 components, resources, schedule, plugins Rust 모듈로 나누고 공개 범위를 제한합니다.
-

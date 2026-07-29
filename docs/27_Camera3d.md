@@ -10,6 +10,8 @@
 
 어두운 3D 창에 Camera3d를 배치하고, 오른쪽 마우스 드래그와 휠로 원점을 공전하는 카메라를 만듭니다.
 
+아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
+
 ```bash
 cargo run -p product_showcase --bin 27_camera3d
 ```
@@ -57,7 +59,8 @@ fn orbit_transform(orbit: &Orbit) -> Transform {
 
 마우스 가운데 버튼으로 focus를 카메라의 right/up 방향으로 평행 이동하는 pan 기능을 구현하세요.
 
+[선택형 과제 해설과 수행 예시 보기](exercises/part4/27_camera3d.md)
+
 ## 다음 챕터
 
 Cuboid, Torus, Sphere, Plane 기본 도형을 조합해 제품 모델과 바닥을 만듭니다.
-

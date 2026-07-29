@@ -91,6 +91,7 @@
 - [43. Assets 관리](43_Assets.md)
 - [44. ECS 아키텍처](44_EcsArchitecture.md)
 - [45. 측정 기반 최적화](45_Optimization.md)
+- [46. 데스크톱과 WASM 빌드·배포](46_DesktopWasmDeployment.md)
 
 ## 예제 디렉터리
 

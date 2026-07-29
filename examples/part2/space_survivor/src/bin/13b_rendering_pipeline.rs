@@ -137,10 +137,7 @@ fn handle_input(
     }
 }
 
-fn update_status(
-    options: Res<DemoOptions>,
-    mut status: Single<&mut Text, With<StatusText>>,
-) {
+fn update_status(options: Res<DemoOptions>, mut status: Single<&mut Text, With<StatusText>>) {
     if !options.is_changed() {
         return;
     }
