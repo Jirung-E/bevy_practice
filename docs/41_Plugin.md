@@ -6,6 +6,12 @@
 - Plugin 사이의 공개 계약을 설계할 수 있다.
 - 환경별 Plugin 조합을 구성할 수 있다.
 
+## 이 내용으로 만들 수 있는 것
+
+- 전투·UI·저장 기능을 독립적으로 켜고 끄는 기능 묶음
+- 여러 프로젝트에서 재사용하는 사내 Bevy Plugin
+- 서버·클라이언트·도구마다 다른 Plugin 조합
+
 ## 이번에 만들 결과물
 
 CorePlugin과 PresentationPlugin만으로 실행되는 Production Arena의 최소 셸을 만듭니다. 화면에는 카메라, 조명, `PLUGIN SHELL READY` HUD가 표시됩니다.

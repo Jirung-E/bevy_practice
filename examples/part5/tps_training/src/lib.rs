@@ -100,6 +100,7 @@ pub fn run(config: LessonConfig) {
                 ..default()
             }),
             PhysicsPlugins::default(),
+            PhysicsDebugPlugin,
             Landmass3dPlugin::default(),
         ))
         .add_systems(Startup, setup)
@@ -176,6 +177,13 @@ fn setup(
         commands.entity(player).insert((
             RigidBody::Dynamic,
             Collider::capsule(0.45, 1.0),
+            ShapeCaster::new(
+                Collider::sphere(0.35),
+                Vec3::new(0.0, -0.78, 0.0),
+                Quat::IDENTITY,
+                Dir3::NEG_Y,
+            )
+            .with_max_distance(0.35),
             LinearVelocity::ZERO,
             LockedAxes::ROTATION_LOCKED,
             Friction::new(0.0),
@@ -260,6 +268,19 @@ fn setup_navigation(
     let nav_handle = nav_meshes.add(NavMesh3d {
         nav_mesh: Arc::new(navigation_mesh),
     });
+
+    commands.spawn((
+        Mesh3d(render_meshes.add(build_training_nav_mesh())),
+        MeshMaterial3d(materials.add(StandardMaterial {
+            base_color: Color::srgba(0.05, 0.9, 0.95, 0.36),
+            emissive: LinearRgba::new(0.0, 0.18, 0.22, 1.0),
+            alpha_mode: AlphaMode::Blend,
+            unlit: true,
+            cull_mode: None,
+            ..default()
+        })),
+        Transform::from_xyz(0.0, 1.015, 0.0),
+    ));
 
     let archipelago = commands
         .spawn(Archipelago3d::new(ArchipelagoOptions::from_agent_radius(
@@ -370,6 +391,10 @@ fn read_camera_input(
     }
 }
 
+#[expect(
+    clippy::type_complexity,
+    reason = "플레이어 이동은 Transform, 애니메이션 값, 물리 속도와 지면 cast 결과를 함께 조정한다"
+)]
 fn move_player(
     keyboard: Res<ButtonInput<KeyCode>>,
     time: Res<Time>,
@@ -380,6 +405,7 @@ fn move_player(
             &mut Transform,
             &mut MotionAmount,
             Option<&mut LinearVelocity>,
+            Option<&ShapeHits>,
         ),
         With<Player>,
     >,
@@ -406,7 +432,10 @@ fn move_player(
     }
 
     if config.physics {
-        let is_near_ground = player.0.translation.y < 1.15;
+        let is_near_ground = player
+            .3
+            .and_then(|hits| hits.iter().next())
+            .is_some_and(|hit| is_walkable_ground(hit.normal1, 50.0));
         if let Some(velocity) = player.2.as_mut() {
             velocity.x = direction.x * PLAYER_SPEED;
             velocity.z = direction.z * PLAYER_SPEED;
@@ -419,6 +448,10 @@ fn move_player(
         player.0.translation.x = player.0.translation.x.clamp(-11.0, 11.0);
         player.0.translation.z = player.0.translation.z.clamp(-11.0, 11.0);
     }
+}
+
+fn is_walkable_ground(normal: Vec3, max_slope_degrees: f32) -> bool {
+    normal.dot(Vec3::Y) >= max_slope_degrees.to_radians().cos()
 }
 
 fn animate_player(
@@ -497,6 +530,15 @@ mod tests {
         let nav_mesh: NavigationMesh3d =
             bevy_mesh_to_landmass_nav_mesh(&mesh).expect("plane conversion succeeds");
         nav_mesh.validate().expect("plane nav mesh is valid");
+    }
+
+    #[test]
+    fn ground_normal_respects_maximum_slope() {
+        assert!(is_walkable_ground(Vec3::Y, 50.0));
+        let gentle = Quat::from_rotation_z(40.0_f32.to_radians()) * Vec3::Y;
+        let steep = Quat::from_rotation_z(60.0_f32.to_radians()) * Vec3::Y;
+        assert!(is_walkable_ground(gentle, 50.0));
+        assert!(!is_walkable_ground(steep, 50.0));
     }
 
     #[test]

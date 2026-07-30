@@ -6,6 +6,12 @@
 - FromWorld로 에셋 카탈로그 Resource를 초기화할 수 있다.
 - 에셋 로딩과 게임 Entity 생성을 분리할 수 있다.
 
+## 이 내용으로 만들 수 있는 것
+
+- 자주 쓰는 Mesh·Material·Image Handle 카탈로그
+- 로딩 완료 후 게임 화면으로 전환하는 프리로드 단계
+- 누락된 에셋에 대체 리소스를 제공하는 안전한 로더
+
 ## 이번에 만들 결과물
 
 플레이어와 적이 공유할 Mesh와 Material을 ArenaAssets에 등록합니다. 아직 Gameplay를 활성화하지 않고 에셋 계층만 준비합니다.

@@ -2,9 +2,13 @@ use bevy::{
     asset::AssetPlugin,
     prelude::*,
     reflect::TypePath,
-    render::render_resource::AsBindGroup,
+    render::{
+        RenderPlugin,
+        render_resource::{AsBindGroup, WgpuFeatures},
+        settings::WgpuSettings,
+    },
     shader::ShaderRef,
-    sprite_render::{Material2d, Material2dPlugin},
+    sprite_render::{Material2d, Material2dPlugin, Wireframe2dConfig, Wireframe2dPlugin},
 };
 
 const SHADER_PATH: &str = "shaders/13b_pipeline_solution.wgsl";
@@ -34,6 +38,7 @@ struct DemoMaterial(Handle<PipelineSolutionMaterial>);
 struct DemoOptions {
     vertex_enabled: bool,
     fragment_enabled: bool,
+    wireframe_enabled: bool,
     shear: f32,
 }
 
@@ -42,6 +47,7 @@ impl Default for DemoOptions {
         Self {
             vertex_enabled: false,
             fragment_enabled: false,
+            wireframe_enabled: false,
             shear: 90.0,
         }
     }
@@ -61,14 +67,28 @@ impl DemoOptions {
 fn main() {
     App::new()
         .add_plugins((
-            DefaultPlugins.set(AssetPlugin {
-                file_path: format!("{}/assets", env!("CARGO_MANIFEST_DIR")),
-                ..default()
-            }),
+            DefaultPlugins
+                .set(AssetPlugin {
+                    file_path: format!("{}/assets", env!("CARGO_MANIFEST_DIR")),
+                    ..default()
+                })
+                .set(RenderPlugin {
+                    render_creation: WgpuSettings {
+                        features: WgpuFeatures::POLYGON_MODE_LINE,
+                        ..default()
+                    }
+                    .into(),
+                    ..default()
+                }),
             Material2dPlugin::<PipelineSolutionMaterial>::default(),
+            Wireframe2dPlugin::default(),
         ))
         .init_resource::<DemoOptions>()
         .insert_resource(ClearColor(Color::srgb(0.025, 0.035, 0.07)))
+        .insert_resource(Wireframe2dConfig {
+            global: false,
+            default_color: Color::srgb(1.0, 0.82, 0.15),
+        })
         .add_systems(Startup, setup)
         .add_systems(Update, (handle_input, update_uniform).chain())
         .run();
@@ -91,12 +111,20 @@ fn setup(
     commands.insert_resource(DemoMaterial(material));
 }
 
-fn handle_input(keyboard: Res<ButtonInput<KeyCode>>, mut options: ResMut<DemoOptions>) {
+fn handle_input(
+    keyboard: Res<ButtonInput<KeyCode>>,
+    mut options: ResMut<DemoOptions>,
+    mut wireframe: ResMut<Wireframe2dConfig>,
+) {
     if keyboard.just_pressed(KeyCode::KeyV) {
         options.vertex_enabled = !options.vertex_enabled;
     }
     if keyboard.just_pressed(KeyCode::KeyF) {
         options.fragment_enabled = !options.fragment_enabled;
+    }
+    if keyboard.just_pressed(KeyCode::KeyW) {
+        options.wireframe_enabled = !options.wireframe_enabled;
+        wireframe.global = options.wireframe_enabled;
     }
     if keyboard.just_pressed(KeyCode::Digit1) {
         options.shear = 90.0;
@@ -135,6 +163,7 @@ mod tests {
             let options = DemoOptions {
                 vertex_enabled: vertex,
                 fragment_enabled: fragment,
+                wireframe_enabled: false,
                 shear: -120.0,
             };
             let uniform = options.uniform(2.5);

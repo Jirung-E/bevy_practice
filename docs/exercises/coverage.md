@@ -51,6 +51,7 @@
 | 4 | 30. Light | ✓ | [보기](part4/30_light.md) | `showcase_solution` |
 | 4 | 30A. 커스텀 PBR Material | ✓ | [보기](part4/30a_custom_pbr_material.md) | `30a_custom_pbr_material` |
 | 4 | 30B. 카메라 후처리 | ✓ | [보기](part4/30b_camera_post_process.md) | `30b_camera_post_process` |
+| 4 | 30C. 3D Object Picking | ✓ | [보기](part4/30c_object_picking.md) | `30c_object_picking` |
 | 5 | 31. TPS 기초 | ✓ | [보기](part5/31_tps_core.md) | `tps_rules_solution` |
 | 5 | 32. TPS 카메라 | ✓ | [보기](part5/32_tps_camera.md) | `tps_rules_solution` |
 | 5 | 33. 애니메이션 | ✓ | [보기](part5/33_animation.md) | `tps_rules_solution` |

@@ -2,9 +2,13 @@ use bevy::{
     asset::AssetPlugin,
     prelude::*,
     reflect::TypePath,
-    render::render_resource::AsBindGroup,
+    render::{
+        RenderPlugin,
+        render_resource::{AsBindGroup, WgpuFeatures},
+        settings::WgpuSettings,
+    },
     shader::ShaderRef,
-    sprite_render::{Material2d, Material2dPlugin},
+    sprite_render::{Material2d, Material2dPlugin, Wireframe2dConfig, Wireframe2dPlugin},
 };
 
 const SHADER_PATH: &str = "shaders/13b_pipeline.wgsl";
@@ -35,6 +39,7 @@ struct DemoMaterial(Handle<PipelineMaterial>);
 struct DemoOptions {
     vertex_enabled: bool,
     fragment_enabled: bool,
+    wireframe_enabled: bool,
 }
 
 #[derive(Component)]
@@ -48,6 +53,14 @@ fn main() {
                     file_path: format!("{}/assets", env!("CARGO_MANIFEST_DIR")),
                     ..default()
                 })
+                .set(RenderPlugin {
+                    render_creation: WgpuSettings {
+                        features: WgpuFeatures::POLYGON_MODE_LINE,
+                        ..default()
+                    }
+                    .into(),
+                    ..default()
+                })
                 .set(WindowPlugin {
                     primary_window: Some(Window {
                         title: "2D Rendering Pipeline - Bevy Practice".into(),
@@ -57,8 +70,13 @@ fn main() {
                     ..default()
                 }),
             Material2dPlugin::<PipelineMaterial>::default(),
+            Wireframe2dPlugin::default(),
         ))
         .insert_resource(ClearColor(Color::srgb(0.025, 0.035, 0.07)))
+        .insert_resource(Wireframe2dConfig {
+            global: false,
+            default_color: Color::srgb(1.0, 0.82, 0.15),
+        })
         .init_resource::<DemoOptions>()
         .add_systems(Startup, setup)
         .add_systems(Update, (handle_input, update_status))
@@ -100,7 +118,7 @@ fn setup(
 
     commands.spawn((
         StatusText,
-        Text::new("V: VERTEX OFF  |  F: FRAGMENT OFF"),
+        Text::new("V: VERTEX OFF  |  F: FRAGMENT OFF  |  W: WIREFRAME OFF"),
         TextFont {
             font_size: FontSize::Px(22.0),
             ..default()
@@ -120,6 +138,7 @@ fn handle_input(
     mut options: ResMut<DemoOptions>,
     demo_material: Res<DemoMaterial>,
     mut materials: ResMut<Assets<PipelineMaterial>>,
+    mut wireframe: ResMut<Wireframe2dConfig>,
 ) {
     let mut changed = false;
     if keyboard.just_pressed(KeyCode::KeyV) {
@@ -129,6 +148,10 @@ fn handle_input(
     if keyboard.just_pressed(KeyCode::KeyF) {
         options.fragment_enabled = !options.fragment_enabled;
         changed = true;
+    }
+    if keyboard.just_pressed(KeyCode::KeyW) {
+        options.wireframe_enabled = !options.wireframe_enabled;
+        wireframe.global = options.wireframe_enabled;
     }
 
     if changed && let Some(mut material) = materials.get_mut(&demo_material.0) {
@@ -142,12 +165,17 @@ fn update_status(options: Res<DemoOptions>, mut status: Single<&mut Text, With<S
         return;
     }
     status.0 = format!(
-        "V: VERTEX {}  |  F: FRAGMENT {}",
+        "V: VERTEX {}  |  F: FRAGMENT {}  |  W: WIREFRAME {}",
         if options.vertex_enabled { "ON" } else { "OFF" },
         if options.fragment_enabled {
             "ON"
         } else {
             "OFF"
-        }
+        },
+        if options.wireframe_enabled {
+            "ON"
+        } else {
+            "OFF"
+        },
     );
 }

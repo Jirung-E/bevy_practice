@@ -7,6 +7,11 @@
 - 저장할 Component와 실행할 때만 필요한 Component를 분리할 수 있다.
 - 저장된 Entity ID가 새 실행의 Entity ID와 같다고 가정하면 안 되는 이유를 이해한다.
 
+## 이 내용으로 만들 수 있는 것
+
+- 타입을 런타임에 조사하는 Inspector와 Component 복사 도구를 만들 수 있습니다.
+- 저장 허용 Component만 골라 DynamicWorld로 직렬화하는 에디터 기반을 만들 수 있습니다.
+
 ## 이번에 만들 결과물
 
 카메라와 렌더링 Plugin 없이 `Position`과 `Health`를 가진 Entity 두 개를 만듭니다. 이 ECS 데이터를 `12b_dynamic_world.scn.ron` 파일에 저장한 뒤 새 World로 읽어 원래 값이 복원되는지 확인합니다.

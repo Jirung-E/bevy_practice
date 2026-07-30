@@ -7,6 +7,12 @@
 - 정점 셰이더와 프래그먼트 셰이더를 교체하면서도 Bevy의 PBR 조명을 유지할 수 있다.
 - 시간, 색상, 텍스처 파라미터를 런타임에 변경하고 셰이더 오류를 진단할 수 있다.
 
+## 이 내용으로 만들 수 있는 것
+
+- 홀로그램·스캔선·피격 발광이 적용된 3D 표면
+- 시간에 따라 녹거나 사라지는 디졸브 오브젝트
+- 기존 PBR 조명을 유지하면서 게임 고유 효과를 더한 Material
+
 ## 이번에 만들 결과물
 
 왼쪽에는 기본 `StandardMaterial`, 오른쪽에는 같은 PBR 재질을 확장한 커스텀 Material 구체를 배치합니다. 오른쪽 구체만 표면이 움직이고 마스크 텍스처 영역의 색과 발광이 맥동합니다.
@@ -31,7 +37,7 @@ cargo run -p product_showcase --bin 30a_custom_pbr_material
 Rust Material 데이터 → AsBindGroup의 binding 번호 → WGSL의 같은 binding → GPU 처리
 ```
 
-2D에서 다룬 [렌더링 파이프라인](13B_RenderingPipeline.md), [WGSL과 셰이더 연결](13C_WgslShader.md), [Material2d 이펙트](13D_Material2dEffects.md)를 먼저 읽으면 셰이더 단계와 바인딩을 더 자세히 복습할 수 있습니다. 이 장에서도 필요한 내용을 다시 설명하므로 Part 2 전체를 먼저 읽을 필요는 없습니다.
+2D에서 다룬 [렌더링 파이프라인과 WGSL 연결](13B_RenderingPipeline.md), [Material2d 이펙트](13C_Material2d.md), [셰이더 핫 리로드](13D_ShaderHotReload.md)를 먼저 읽으면 셰이더 단계와 바인딩을 더 자세히 복습할 수 있습니다. 이 장에서도 필요한 내용을 다시 설명하므로 Part 2 전체를 먼저 읽을 필요는 없습니다.
 
 ### StandardMaterial을 버리지 않고 확장하기
 

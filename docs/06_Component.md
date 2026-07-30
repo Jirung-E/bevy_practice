@@ -6,6 +6,11 @@
 - `#[derive(Component)]`로 사용자 Component를 정의할 수 있다.
 - Bundle 문법으로 여러 Component를 한 Entity에 추가할 수 있다.
 
+## 이 내용으로 만들 수 있는 것
+
+- 체력·위치·속도·팀처럼 Entity마다 다른 데이터를 조합할 수 있습니다.
+- 같은 데이터에 `Player`와 `Enemy` marker를 붙여 서로 다른 규칙을 적용할 수 있습니다.
+
 ## 이번에 만들 결과물
 
 Player 표식, 체력, 위치를 가진 플레이어 Entity를 생성합니다.

@@ -1,5 +1,6 @@
 use bevy::{
     input::mouse::{MouseMotion, MouseWheel},
+    picking::pointer::PointerButton,
     prelude::*,
     window::WindowResolution,
 };
@@ -39,6 +40,9 @@ impl LessonConfig {
 
 #[derive(Component)]
 struct Editable;
+
+#[derive(Component)]
+struct SelectionBackground;
 
 #[derive(Component)]
 struct EditorName(String);
@@ -115,14 +119,18 @@ pub fn run(config: LessonConfig) {
         .init_resource::<EditorLog>()
         .init_resource::<Orbit>()
         .insert_resource(ClearColor(Color::srgb(0.018, 0.022, 0.032)))
-        .add_plugins(DefaultPlugins.set(WindowPlugin {
-            primary_window: Some(Window {
-                title: "World Editor - Bevy Practice".into(),
-                resolution: WindowResolution::new(1280, 800),
+        .add_plugins((
+            DefaultPlugins.set(WindowPlugin {
+                primary_window: Some(Window {
+                    title: "World Editor - Bevy Practice".into(),
+                    resolution: WindowResolution::new(1280, 800),
+                    ..default()
+                }),
                 ..default()
             }),
-            ..default()
-        }))
+            MeshPickingPlugin,
+        ))
+        .add_observer(select_from_viewport)
         .add_systems(Startup, setup)
         .add_systems(
             Update,
@@ -155,6 +163,8 @@ fn setup(
         Transform::from_rotation(Quat::from_euler(EulerRot::XYZ, -0.9, -0.5, 0.0)),
     ));
     commands.spawn((
+        SelectionBackground,
+        Pickable::default(),
         Mesh3d(meshes.add(Plane3d::default().mesh().size(24.0, 24.0))),
         MeshMaterial3d(materials.add(Color::srgb(0.1, 0.12, 0.14))),
     ));
@@ -210,6 +220,7 @@ fn spawn_editable(
     commands
         .spawn((
             Editable,
+            Pickable::default(),
             EditorName(name.into()),
             Mesh3d(mesh),
             MeshMaterial3d(material),
@@ -220,11 +231,14 @@ fn spawn_editable(
 
 fn setup_editor_ui(commands: &mut Commands, config: &LessonConfig) {
     commands
-        .spawn(Node {
-            width: percent(100),
-            height: percent(100),
-            ..default()
-        })
+        .spawn((
+            Node {
+                width: percent(100),
+                height: percent(100),
+                ..default()
+            },
+            Pickable::IGNORE,
+        ))
         .with_children(|root| {
             root.spawn((
                 Node {
@@ -340,6 +354,28 @@ fn setup_editor_ui(commands: &mut Commands, config: &LessonConfig) {
                 ));
             }
         });
+}
+
+fn select_from_viewport(
+    click: On<Pointer<Click>>,
+    mut selection: ResMut<Selection>,
+    mut log: ResMut<EditorLog>,
+    editables: Query<&EditorName, With<Editable>>,
+    backgrounds: Query<(), With<SelectionBackground>>,
+) {
+    if click.button != PointerButton::Primary {
+        return;
+    }
+    if let Ok(name) = editables.get(click.entity) {
+        selection.0 = Some(click.entity);
+        log.lines.push(format!("Selected {} from viewport", name.0));
+    } else if backgrounds.contains(click.entity) {
+        selection.0 = None;
+        log.lines.push("Cleared viewport selection".into());
+    }
+    if log.lines.len() > 5 {
+        log.lines.remove(0);
+    }
 }
 
 fn panel_title(label: &str) -> impl Bundle {

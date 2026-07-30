@@ -6,6 +6,12 @@
 - Asset 항목에서 새 Entity를 생성할 수 있다.
 - 생성 직후 선택과 로그를 함께 갱신할 수 있다.
 
+## 이 내용으로 만들 수 있는 것
+
+- 재사용할 Mesh·Material·Scene을 탐색하는 에셋 목록
+- 버튼이나 드래그 앤 드롭으로 오브젝트를 배치하는 팔레트
+- Handle을 공유해 중복 로딩을 줄이는 제작 도구
+
 ## 이번에 만들 결과물
 
 하단 Asset Browser에서 Cube 또는 Sphere 버튼을 눌러 새 Editable Entity를 생성하고 즉시 선택합니다.

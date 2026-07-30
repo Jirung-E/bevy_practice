@@ -10,22 +10,21 @@
 
 형상을 의도적으로 다르게 해 접촉 지점을 확인합니다. 보이지 않는 벽이나 모델 관통은 두 형상 차이에서 생길 수 있습니다.
 
-## P5-C34-P3 · 디버그 렌더
+## P5-C34-P3 · Collider 크기 비교
 
-Avian 디버그 렌더 Plugin은 개발 구성에서만 켭니다. Collider와 shape cast를 표시하되 출시 빌드에는 포함하지 않습니다.
+본문에서 이미 켠 `PhysicsDebugPlugin`으로 시각 Mesh와 Collider를 동시에 봅니다. 반지름을 너무 작게 하면 모델이 벽에 파고들어 보이고, 너무 크게 하면 보이지 않는 공간에서 충돌합니다.
 
-## P5-C34-A1 · shape cast 컨트롤러
+## P5-C34-A1 · 경사와 공중 가속도 비교
 
-발 아래로 capsule shape cast를 하고 hit normal과 up의 각도를 계산합니다. 수행 예제는 `normal · up >= cos(max_slope)`로 45도보다 가파른 표면을 지면에서 제외합니다.
+본문의 shape cast와 `normal · up >= cos(max_slope)`를 그대로 사용하고 상수만 바꿉니다. 순수 함수 테스트에서 35도 제한과 65도 제한이 같은 normal을 다르게 판정하는지 확인합니다.
 
-- 계단 오르기는 전방 장애물과 위쪽 여유 공간을 함께 검사합니다.
-- 공중 제어는 목표 속도로 제한된 비율만 보간합니다.
-- 단일 ray보다 캐릭터 폭을 반영하는 shape cast가 모서리에서 안정적입니다.
+공중 가속도 0은 점프 뒤 방향을 바꿀 수 없고, 지상 가속도의 30%는 제한적으로 바꿀 수 있습니다. 두 값을 같은 점프 시나리오에서 비교해 수평 이동 거리를 기록합니다.
 
 ## 전체 코드 실행
 
 ```bash
 cargo test -p tps_training --bin tps_rules_solution
+cargo run -p tps_training --bin 34_physics
 ```
 
 전체 코드: `examples/part5/tps_training/src/bin/tps_rules_solution.rs`

@@ -7,6 +7,12 @@
 - `AnimationGraph`, `AnimationPlayer`, `AnimationTransitions`의 역할을 구분할 수 있다.
 - 입력 상태와 애니메이션 Handle을 분리하고 Survey·Walk·Run을 혼합 전환할 수 있다.
 
+## 이 내용으로 만들 수 있는 것
+
+- GLB 캐릭터의 Idle·Walk·Run 상태 전환
+- 이동 속도에 따라 클립이 부드럽게 섞이는 애니메이션
+- 게임 입력과 모델 내부 AnimationPlayer를 연결한 캐릭터 컨트롤러
+
 ## 이번에 만들 결과물
 
 Khronos Fox GLB를 실제 3D Scene으로 생성하고 입력에 따라 세 애니메이션을 전환합니다. 이 모델에는 별도 Idle 클립이 없으므로 주위를 살피는 `Survey`를 정지 상태로 사용합니다.

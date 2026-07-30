@@ -6,6 +6,12 @@
 - `pub`, `pub(crate)`, 비공개 항목을 구분할 수 있다.
 - prelude 남용 없이 명시적인 모듈 계약을 만들 수 있다.
 
+## 이 내용으로 만들 수 있는 것
+
+- gameplay·presentation·assets가 분리된 유지보수 가능한 crate
+- 공개 API가 작고 의존 방향이 분명한 기능 모듈
+- 팀원이 동시에 수정해도 충돌이 적은 프로젝트 구조
+
 ## 이번에 만들 결과물
 
 동일한 Plugin 셸을 여러 Rust 모듈로 구성하고 crate 루트가 외부에 노출할 최소 API만 re-export합니다.

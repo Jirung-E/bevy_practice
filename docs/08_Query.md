@@ -6,6 +6,11 @@
 - `With`, `Without`, `Entity`를 조합할 수 있다.
 - 가변 Query가 만드는 데이터 접근 규칙을 이해한다.
 
+## 이 내용으로 만들 수 있는 것
+
+- 모든 적만 찾아 피해를 주거나 플레이어를 제외한 Collider만 검사할 수 있습니다.
+- `With`, `Without`, `Changed` filter로 필요한 Entity만 처리해 로직과 비용을 줄일 수 있습니다.
+
 ## 이번에 만들 결과물
 
 Player 한 명과 Enemy 두 명을 만든 뒤, Enemy의 체력만 10씩 감소시키고 각 Entity ID와 남은 체력을 출력합니다.

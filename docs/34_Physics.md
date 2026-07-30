@@ -6,6 +6,12 @@
 - RigidBody와 Collider의 역할을 구분할 수 있다.
 - Transform 직접 이동을 LinearVelocity 제어로 바꿀 수 있다.
 
+## 이 내용으로 만들 수 있는 것
+
+- 바닥과 경사면을 구분하고 점프하는 캐릭터 컨트롤러
+- Collider를 눈으로 확인하며 조정하는 물리 테스트 장면
+- 벽·계단·낭떠러지에 반응하는 3D 이동 기반
+
 ## 이번에 만들 결과물
 
 플레이어가 중력의 영향을 받고 바닥과 장애물에 충돌하며 Space로 점프하는 물리 기반 TPS 훈련장을 만듭니다.
@@ -29,7 +35,11 @@ Collider는 렌더링 Mesh와 별도입니다. 단순 Capsule과 Cuboid Collider
 ## 샘플 코드
 
 ```rust
-App::new().add_plugins((DefaultPlugins, PhysicsPlugins::default()));
+App::new().add_plugins((
+    DefaultPlugins,
+    PhysicsPlugins::default(),
+    PhysicsDebugPlugin,
+));
 ```
 
 ```rust
@@ -58,15 +68,68 @@ if jump_requested && is_near_ground {
 - Friction 0은 이동 입력과 지면 마찰이 싸워 생기는 조작 지연을 줄입니다.
 - 현재 지면 검사는 높이 기반 입문 구현이며 실전에서는 shape cast 또는 접촉 법선을 사용해야 합니다.
 
+### Collider 디버그 렌더링
+
+Collider는 보이지 않는 물리 도형이므로 시각 Mesh와 크기·위치가 어긋나도 화면만 보고 찾기 어렵습니다. `PhysicsDebugPlugin`을 추가하면 Collider, 접촉점, shape cast를 gizmo로 표시할 수 있습니다.
+
+```rust
+use avian3d::prelude::*;
+
+App::new().add_plugins((
+    DefaultPlugins,
+    PhysicsPlugins::default(),
+    PhysicsDebugPlugin,
+));
+```
+
+34 예제를 실행하면 캡슐 플레이어, 바닥, 장애물 Collider의 윤곽과 아래 방향 shape cast를 확인할 수 있습니다. 디버그 플러그인은 개발 빌드에서 사용하고 출시 구성에서는 제외하는 것이 일반적입니다. 특정 Entity의 색을 바꾸려면 `DebugRender::default().with_collider_color(...)`를 함께 붙입니다.
+
+### Shape cast로 지면 검사
+
+플레이어 중심의 `y` 값만 확인하면 계단·경사·움직이는 발판에서 틀립니다. 발 아래에 작은 구를 아래로 이동시키는 `ShapeCaster`를 붙이면 실제 Collider를 기준으로 지면을 찾을 수 있습니다.
+
+```rust
+commands.entity(player).insert(
+    ShapeCaster::new(
+        Collider::sphere(0.35),
+        Vec3::new(0.0, -0.78, 0.0),
+        Quat::IDENTITY,
+        Dir3::NEG_Y,
+    )
+    .with_max_distance(0.35),
+);
+```
+
+매 프레임 `ShapeHits`의 가장 가까운 결과를 읽고 표면 법선과 위쪽 방향의 내적으로 경사 한계를 검사합니다.
+
+```rust
+fn is_walkable_ground(normal: Vec3, max_slope_degrees: f32) -> bool {
+    normal.dot(Vec3::Y) >= max_slope_degrees.to_radians().cos()
+}
+```
+
+50도 제한이라면 평지와 40도 경사는 지면이고 60도 경사는 지면이 아닙니다. 점프는 `ShapeHits`가 있고 법선이 허용 범위일 때만 시작합니다.
+
+### 계단과 공중 제어
+
+계단 오르기는 단순히 Y 속도를 올리는 기능이 아닙니다.
+
+1. 진행 방향의 낮은 위치에서 전방 cast가 막혔는지 확인합니다.
+2. `step_height`만큼 높은 위치에서 같은 cast가 비어 있는지 확인합니다.
+3. 위에서 아래로 cast해 착지 가능한 법선을 찾습니다.
+4. 세 조건이 맞을 때만 목표 위치를 계단 위로 보정합니다.
+
+공중에서는 입력을 무시하기보다 지상 가속도의 일부만 적용합니다. 예를 들어 지상 가속도 30, 공중 가속도 8처럼 나누고 XZ 속도를 목표 속도로 서서히 이동시키면 방향 전환은 가능하지만 즉시 꺾이지 않습니다.
+
 ## 실습 과제
 
 1. 중력과 점프 속도를 조절하세요.
 2. 장애물 크기와 Collider 크기를 다르게 해 보세요.
-3. 물리 디버그 렌더링으로 Collider를 표시하세요.
+3. 디버그 렌더링을 보면서 플레이어 Collider 반지름을 바꾸고 시각 Mesh와의 차이를 기록하세요.
 
 ## 심화 과제
 
-Avian SpatialQuery의 shape cast로 지면을 감지하고 경사면 최대 각도, 계단 오르기, 공중 제어를 갖춘 캐릭터 컨트롤러로 발전시키세요.
+본문의 `max_slope_degrees`를 35도와 65도로 바꾸고 같은 경사면에서 지면 판정이 어떻게 달라지는지 테스트로 검증하세요. 이어서 공중 가속도 상수를 추가해 0과 지상 가속도의 30%를 비교하세요.
 
 [선택형 과제 해설과 수행 예시 보기](exercises/part5/34_physics.md)
 

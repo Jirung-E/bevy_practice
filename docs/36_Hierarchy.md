@@ -6,6 +6,12 @@
 - Entity ID와 사용자용 이름을 구분할 수 있다.
 - 선택 상태를 Resource로 관리할 수 있다.
 
+## 이 내용으로 만들 수 있는 것
+
+- 부모·자식 관계를 펼쳐 보는 Scene Tree
+- 여러 오브젝트를 그룹으로 선택하고 이동하는 편집 기능
+- 사용자 이름과 Entity ID를 함께 관리하는 디버그 도구
+
 ## 이번에 만들 결과물
 
 왼쪽 Hierarchy 패널에 Blue Cube와 Orange Sphere를 표시하고 Select Next 버튼으로 선택 대상을 순환하며 Delete로 제거합니다.

@@ -9,3 +9,4 @@
 - [30. Light와 그림자](../30_Light.md)
 - [30A. 커스텀 Material과 PBR 셰이더](../30A_CustomPbrMaterial.md)
 - [30B. 카메라 후처리 셰이더](../30B_CameraPostProcess.md)
+- [30C. 3D 오브젝트 마우스 선택](../30C_ObjectPicking.md)

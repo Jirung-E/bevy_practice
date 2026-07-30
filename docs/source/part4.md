@@ -66,3 +66,9 @@
 ```wgsl
 {{#include ../../examples/part4/product_showcase/assets/shaders/30b_camera_post_process.wgsl}}
 ```
+
+### 30C · 3D Object Picking
+
+```rust
+{{#include ../../examples/part4/product_showcase/src/bin/30c_object_picking.rs}}
+```

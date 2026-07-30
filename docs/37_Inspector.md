@@ -6,6 +6,12 @@
 - Inspector 작업을 명령 데이터로 표현할 수 있다.
 - 편집과 화면 표시를 분리할 수 있다.
 
+## 이 내용으로 만들 수 있는 것
+
+- 선택한 Entity의 Transform과 Component를 편집하는 패널
+- 속성 변경을 명령으로 기록하는 Undo/Redo 기반
+- 런타임 데이터를 살펴보고 조정하는 디버그 Inspector
+
 ## 이번에 만들 결과물
 
 오른쪽 Inspector에 선택된 이름과 Transform 좌표를 표시하고 X/Y/Z 증감 버튼으로 위치를 편집합니다.

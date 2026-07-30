@@ -4,13 +4,19 @@
 
 - Entity의 `Mesh2d`와 `Material2d`가 GPU 명령으로 변환되는 큰 흐름을 설명할 수 있다.
 - vertex shader, rasterization, fragment shader의 역할을 구분할 수 있다.
+- wireframe 렌더링으로 Mesh를 구성하는 triangle primitive를 눈으로 확인할 수 있다.
 - 정점 위치, UV, clip space가 무엇인지 이해한다.
 - WGSL의 함수, 구조체, attribute, uniform 문법을 읽을 수 있다.
 - uniform, texture, sampler가 각각 어떤 데이터를 전달하는지 구분할 수 있다.
 
+## 이 내용으로 만들 수 있는 것
+
+- 정점 단계에서 흔들림·왜곡을 만들고 fragment 단계에서 픽셀 색과 투명도를 계산할 수 있습니다.
+- 렌더링 문제가 Mesh, vertex shader, fragment shader 중 어디에서 생겼는지 구분할 수 있습니다.
+
 ## 이번에 만들 결과물
 
-하나의 사각형에 직접 작성한 vertex shader와 fragment shader를 적용합니다. `V` 키는 정점 위치 변형을, `F` 키는 UV 기반 픽셀 색상 계산을 독립적으로 켜고 끕니다.
+하나의 사각형에 직접 작성한 vertex shader와 fragment shader를 적용합니다. `V` 키는 정점 위치 변형을, `F` 키는 UV 기반 픽셀 색상 계산을 독립적으로 켜고 끕니다. `W` 키를 누르면 wireframe을 겹쳐 그려 사각형이 실제로 두 triangle primitive로 조립되어 있음을 확인할 수 있습니다.
 
 아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
 
@@ -55,6 +61,49 @@ clip space는 화면에 그릴 후보를 판정하기 위한 좌표계입니다.
 ### rasterization
 
 rasterization은 변환된 삼각형 내부가 화면의 어느 fragment를 덮는지 계산합니다. vertex shader가 네 번 실행된다고 해서 사각형에 픽셀이 네 개만 생기는 것이 아닙니다. 정점 사이의 UV 같은 값도 각 fragment 위치에 맞게 보간됩니다.
+
+### wireframe으로 primitive 확인하기
+
+GPU는 사각형·원 같은 이름을 직접 이해하지 않습니다. `Rectangle` Mesh도 index buffer가 지정한 두 개의 triangle primitive로 그립니다. 채워진 결과만 보면 내부 대각선이 보이지 않지만 wireframe 렌더링을 겹치면 각 triangle의 세 변을 확인할 수 있습니다.
+
+이 예제에서 먼저 `V`를 꺼 둔 뒤 `W`를 누르세요.
+
+1. 바깥쪽 네 변뿐 아니라 사각형을 가르는 대각선이 나타나는지 확인합니다.
+2. 대각선을 기준으로 양쪽 영역이 각각 하나의 triangle primitive입니다.
+3. 다시 `W`를 누르면 채우기 결과만 남습니다.
+
+Bevy 0.19에서는 다음 세 요소가 필요합니다.
+
+```rust
+DefaultPlugins.set(RenderPlugin {
+    render_creation: WgpuSettings {
+        features: WgpuFeatures::POLYGON_MODE_LINE,
+        ..default()
+    }
+    .into(),
+    ..default()
+})
+```
+
+```rust
+.add_plugins(Wireframe2dPlugin::default())
+.insert_resource(Wireframe2dConfig {
+    global: false,
+    default_color: Color::srgb(1.0, 0.82, 0.15),
+})
+```
+
+```rust
+if keyboard.just_pressed(KeyCode::KeyW) {
+    wireframe.global = !wireframe.global;
+}
+```
+
+`POLYGON_MODE_LINE`은 GPU가 triangle 내부를 채우는 대신 변만 그릴 수 있게 요청하는 기능이고, `Wireframe2dPlugin`은 `Mesh2d`를 wireframe 패스로 다시 그립니다. `Wireframe2dConfig::global`을 바꾸면 전체 Mesh의 표시를 실행 중에 켜고 끌 수 있습니다. 특정 Entity만 표시하려면 전역 설정을 끈 상태에서 그 Entity에 `Wireframe2d` Component를 추가합니다.
+
+이 방식은 Bevy 0.19 기준 DX12·Vulkan·Metal 네이티브 환경용이며 WebGL/WebGPU 빌드에서는 지원되지 않습니다. WASM에서도 같은 관찰 화면이 필요하면 Mesh의 index를 읽어 각 triangle의 세 변을 `Gizmos` 또는 별도의 line-list Mesh로 그리는 방식을 사용해야 합니다.
+
+이번 예제의 wireframe 패스는 원본 Mesh primitive를 관찰하기 위한 디버그 패스입니다. 커스텀 Material의 vertex shader와는 별도의 shader로 그려지므로 `V` 변형까지 켜면 채워진 윤곽과 wireframe이 일치하지 않을 수 있습니다. primitive 조립 상태는 `V: OFF`에서 확인하고, vertex 변형 결과는 채워진 렌더링으로 비교하세요.
 
 ### fragment shader와 Pixel Shader
 
@@ -139,6 +188,7 @@ fn fragment(input: VertexOutput) -> @location(0) vec4<f32> {
 
 - `AsBindGroup`은 Rust Material 필드를 GPU bind group으로 변환합니다.
 - `Material2dPlugin`은 이 Material을 사용하는 2D 렌더 파이프라인을 등록합니다.
+- `Wireframe2dPlugin`은 같은 Mesh의 triangle 경계를 별도의 디버그 패스로 겹쳐 그립니다.
 - `Mesh2d`는 정점·인덱스 데이터, `MeshMaterial2d`는 shader와 uniform 데이터를 선택합니다.
 - `@location(0)`과 `@location(2)`는 Mesh vertex buffer의 position과 UV attribute에 대응합니다.
 - `@builtin(instance_index)`는 현재 인스턴스의 Transform을 찾는 데 사용됩니다.
@@ -151,7 +201,8 @@ WGSL 문법이나 binding이 틀리면 Rust 컴파일은 성공할 수 있지만
 
 1. vertex 이동량 `90.0`을 `-120.0`, `30.0`으로 바꾸고 결과를 비교하세요.
 2. `uv_color`의 R과 G 입력을 서로 바꾸세요.
-3. `V`와 `F`의 네 가지 조합을 표로 기록하고 어느 단계가 윤곽과 내부 색을 바꾸는지 설명하세요.
+3. `V`를 끄고 `W`를 켠 뒤 사각형을 이루는 triangle primitive 수와 공통 변을 기록하세요.
+4. `V`와 `F`의 네 가지 조합을 표로 기록하고 어느 단계가 윤곽과 내부 색을 바꾸는지 설명하세요.
 
 ## 심화 과제
 
