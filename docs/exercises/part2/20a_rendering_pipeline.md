@@ -1,8 +1,8 @@
-# 13B. 렌더링 파이프라인과 WGSL 과제 해설
+# 20A. 렌더링 파이프라인과 WGSL 과제 해설
 
-[본문으로 돌아가기](../../13B_RenderingPipeline.md#실습-과제)
+[본문으로 돌아가기](../../20A_RenderingPipeline.md#실습-과제)
 
-## P2-C13B-P1 · 정점 이동량 비교
+## P2-C20A-P1 · 정점 이동량 비교
 
 정점 이동량의 부호는 기울어지는 방향을, 절댓값은 변형 크기를 바꿉니다.
 
@@ -14,7 +14,7 @@
 
 Transform은 바뀌지 않고 Mesh의 정점이 GPU에서 이동하는지 확인하세요.
 
-## P2-C13B-P2 · UV의 R/G 교환
+## P2-C20A-P2 · UV의 R/G 교환
 
 ```wgsl
 let uv_color = vec4<f32>(input.uv.y, input.uv.x, 1.0 - input.uv.x, 1.0);
@@ -22,7 +22,7 @@ let uv_color = vec4<f32>(input.uv.y, input.uv.x, 1.0 - input.uv.x, 1.0);
 
 R 채널이 세로 방향, G 채널이 가로 방향 변화로 바뀝니다. UV 자체나 정점 위치는 변경되지 않습니다.
 
-## P2-C13B-P3 · V/F 네 가지 조합
+## P2-C20A-P3 · V/F 네 가지 조합
 
 | Vertex | Fragment | 윤곽 | 내부 색 |
 |:---:|:---:|---|---|
@@ -33,7 +33,7 @@ R 채널이 세로 방향, G 채널이 가로 방향 변화로 바뀝니다. UV 
 
 Vertex 단계는 정점 위치와 윤곽을, Fragment 단계는 각 픽셀의 최종 색을 결정합니다. 한 단계가 다른 단계의 역할을 대신한다고 설명하면 안 됩니다.
 
-## P2-C13B-A1 · 시간 uniform 정점 애니메이션
+## P2-C20A-A1 · 시간 uniform 정점 애니메이션
 
 Rust는 Material의 `options.z`에 경과 시간을 기록합니다.
 
@@ -69,5 +69,4 @@ cargo test -p space_survivor --bin rendering_pipeline_solution
 
 전체 Rust 코드: `examples/part2/space_survivor/src/bin/rendering_pipeline_solution.rs`
 
-전체 WGSL 코드: `examples/part2/space_survivor/assets/shaders/13b_pipeline_solution.wgsl`
-
+전체 WGSL 코드: `examples/part2/space_survivor/assets/shaders/20a_pipeline_solution.wgsl`

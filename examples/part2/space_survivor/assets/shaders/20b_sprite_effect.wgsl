@@ -10,21 +10,28 @@ struct Vertex {
 };
 
 @group(#{MATERIAL_BIND_GROUP}) @binding(0)
-var<uniform> base_color: vec4<f32>;
+var<uniform> effect: vec4<f32>;
 
-// x: vertex on, y: fragment on, z: elapsed time, w: shear amount
 @group(#{MATERIAL_BIND_GROUP}) @binding(1)
-var<uniform> options: vec4<f32>;
+var color_texture: texture_2d<f32>;
+
+@group(#{MATERIAL_BIND_GROUP}) @binding(2)
+var color_sampler: sampler;
+
+@group(#{MATERIAL_BIND_GROUP}) @binding(3)
+var<uniform> uv_rect: vec4<f32>;
+
+// 20C hot reload 실습에서는 앱을 실행한 채 이 두 상수를 수정한다.
+const WOBBLE_SCALE: f32 = 50.0;
+const HIT_COLOR: vec3<f32> = vec3<f32>(1.0, 0.25, 0.18);
 
 @vertex
 fn vertex(vertex: Vertex) -> VertexOutput {
     var output: VertexOutput;
     var local_position = vertex.position;
 
-    let normalized_y = local_position.y / 130.0;
-    let shear = normalized_y * options.w;
-    let wobble = sin(options.z * 3.0 + local_position.y * 0.02) * 12.0;
-    local_position.x += (shear + wobble) * options.x;
+    let phase = effect.x * 5.0 + local_position.y * 0.035;
+    local_position.x += sin(phase) * effect.y * WOBBLE_SCALE;
 
     let world_from_local = mesh_functions::get_world_from_local(vertex.instance_index);
     output.world_position = mesh_functions::mesh2d_position_local_to_world(
@@ -38,12 +45,13 @@ fn vertex(vertex: Vertex) -> VertexOutput {
 
 @fragment
 fn fragment(input: VertexOutput) -> @location(0) vec4<f32> {
-    let swapped_uv_color = vec4<f32>(
-        input.uv.y,
-        input.uv.x,
-        1.0 - input.uv.x,
-        1.0,
-    );
-    return mix(base_color, swapped_uv_color, options.y);
-}
+    let atlas_uv = uv_rect.xy + input.uv * uv_rect.zw;
+    let texture_color = textureSample(color_texture, color_sampler, atlas_uv);
 
+    if texture_color.a < 0.05 {
+        discard;
+    }
+
+    let hit_color = vec4<f32>(HIT_COLOR, texture_color.a);
+    return mix(texture_color, hit_color, effect.z);
+}

@@ -9,7 +9,7 @@ use bevy::{
     sprite_render::{AlphaMode2d, Material2d, Material2dPlugin},
 };
 
-const SHADER_PATH: &str = "shaders/13c_sprite_effect.wgsl";
+const SHADER_PATH: &str = "shaders/20b_sprite_effect.wgsl";
 const PLAYER_SPEED: f32 = 260.0;
 
 #[derive(Asset, TypePath, AsBindGroup, Debug, Clone)]

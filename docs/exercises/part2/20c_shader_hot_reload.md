@@ -1,8 +1,8 @@
-# 13D. Shader Hot Reload 과제 해설
+# 20C. Shader Hot Reload 과제 해설
 
-[본문으로 돌아가기](../../13D_ShaderHotReload.md#실습-과제)
+[본문으로 돌아가기](../../20C_ShaderHotReload.md#실습-과제)
 
-## P2-C13D-P1 · WOBBLE_SCALE 변경
+## P2-C20C-P1 · WOBBLE_SCALE 변경
 
 앱을 실행한 상태에서 `0`, `10`, `80`을 한 번에 하나씩 저장합니다.
 
@@ -15,7 +15,7 @@
 
 변경이 반영되지 않으면 먼저 `file_watcher` feature와 `AssetPlugin.watch_for_changes_override`를 확인합니다.
 
-## P2-C13D-P2 · HIT_COLOR 변경
+## P2-C20C-P2 · HIT_COLOR 변경
 
 녹색과 흰색을 저장한 뒤 각각 `H`를 눌러 확인합니다.
 
@@ -26,7 +26,7 @@ const HIT_COLOR: vec3<f32> = vec3<f32>(1.0, 1.0, 1.0);
 
 두 선언을 동시에 두는 것이 아니라 한 선언의 값을 차례로 교체합니다.
 
-## P2-C13D-P3 · 의도적 오류와 복구
+## P2-C20C-P3 · 의도적 오류와 복구
 
 1. 변경 전 WGSL이 정상 동작하는지 확인합니다.
 2. 세미콜론 하나만 제거하고 저장합니다.
@@ -36,7 +36,7 @@ const HIT_COLOR: vec3<f32> = vec3<f32>(1.0, 1.0, 1.0);
 
 오류를 여러 개 동시에 만들면 첫 원인을 찾기 어렵습니다. 실험이 끝난 뒤 `git diff`로 WGSL이 원래 상태인지 확인하세요.
 
-## P2-C13D-P4 · texture reload
+## P2-C20C-P4 · texture reload
 
 원본과 같은 크기·atlas 구조의 PNG 복사본을 사용하세요. 레이아웃이 다른 이미지로 바꾸면 reload 여부와 UV 오류를 구분하기 어렵습니다.
 
@@ -46,7 +46,7 @@ const HIT_COLOR: vec3<f32> = vec3<f32>(1.0, 1.0, 1.0);
 - Rust 코드는 다시 컴파일되지 않는다.
 - 원본 파일을 복구한 뒤 다시 반영된다.
 
-## P2-C13D-A1 · 개발 전용 상태 Plugin
+## P2-C20C-A1 · 개발 전용 상태 Plugin
 
 `AssetEvent<Shader>`는 Shader asset이 추가·수정·제거되거나 의존성과 함께 로드된 사실을 알려 줍니다. 파일 자체의 로드 실패는 `AssetLoadFailedEvent<Shader>`로 별도 수신합니다.
 
@@ -84,4 +84,3 @@ cargo run -p space_survivor --bin material_2d
 ```
 
 전체 코드: `examples/part2/space_survivor/src/bin/shader_reload_status_solution.rs`
-

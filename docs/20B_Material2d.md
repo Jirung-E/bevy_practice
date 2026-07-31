@@ -1,4 +1,4 @@
-# 13C. Material2d 커스텀 셰이더
+# 20B. Material2d 커스텀 셰이더
 
 ## 학습 목표
 
@@ -142,7 +142,7 @@ commands.spawn((
 ));
 ```
 
-전체 Rust 코드는 `examples/part2/space_survivor/src/bin/13c_material_2d.rs`, WGSL은 `assets/shaders/13c_sprite_effect.wgsl`에 있습니다.
+전체 Rust 코드는 `examples/part2/space_survivor/src/bin/20b_material_2d.rs`, WGSL은 `assets/shaders/20b_sprite_effect.wgsl`에 있습니다.
 
 ## 코드 설명
 
@@ -167,8 +167,8 @@ Material asset은 여러 Entity가 공유할 수 있습니다. 공유 Material�
 
 `HitFlash` 외에 `Poisoned`, `Shielded` Component를 추가하고 상태마다 다른 색상 효과를 적용하세요. 게임 System은 상태 Component만 변경하고, WGSL 값으로 변환하는 코드는 `SpriteEffectPlugin` 안에 유지하세요.
 
-과제를 먼저 직접 수행한 뒤 필요할 때 [힌트와 수행 예시](exercises/part2/13c_material2d.md)를 확인하세요.
+과제를 먼저 직접 수행한 뒤 필요할 때 [힌트와 수행 예시](exercises/part2/20b_material2d.md)를 확인하세요.
 
 ## 다음 챕터
 
-다음은 기존 총알과 적 생성 실습으로 돌아갑니다. 이후 저장 챕터에서는 렌더링 전용 Material Handle을 저장 데이터에서 제외하고, 복원된 게임 상태에 맞춰 다시 연결합니다.
+다음 20C에서는 Rust의 Material과 WGSL 파일 연결을 추적하고, 실행 중 셰이더를 수정해 즉시 결과를 확인합니다.

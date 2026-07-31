@@ -11,7 +11,7 @@ use bevy::{
     sprite_render::{Material2d, Material2dPlugin, Wireframe2dConfig, Wireframe2dPlugin},
 };
 
-const SHADER_PATH: &str = "shaders/13b_pipeline.wgsl";
+const SHADER_PATH: &str = "shaders/20a_pipeline.wgsl";
 
 #[derive(Asset, TypePath, AsBindGroup, Debug, Clone)]
 struct PipelineMaterial {

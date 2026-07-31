@@ -16,8 +16,12 @@ path = "src/bin/13a_texture_atlas.rs"
 
 [[bin]]
 name = "rendering_pipeline"
-path = "src/bin/13b_rendering_pipeline.rs"
+path = "src/bin/20a_rendering_pipeline.rs"
 
 [[bin]]
 name = "material_2d"
-path = "src/bin/13c_material_2d.rs"
+path = "src/bin/20b_material_2d.rs"
+
+[[bin]]
+name = "particle_system"
+path = "src/bin/20d_particle_system.rs"

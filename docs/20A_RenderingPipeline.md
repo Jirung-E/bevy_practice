@@ -1,4 +1,4 @@
-# 13B. 2D 렌더링 파이프라인과 WGSL
+# 20A. 2D 렌더링 파이프라인과 WGSL
 
 ## 학습 목표
 
@@ -121,7 +121,7 @@ UV는 텍스처 안의 위치를 나타내는 2차원 좌표입니다. 일반적
 - texture: 2차원 이미지 데이터를 GPU가 읽을 수 있는 리소스입니다.
 - sampler: texture의 좌표가 픽셀 사이에 있거나 영역 밖일 때 보간·반복 방법을 정합니다.
 
-Rust의 `#[uniform(0)]`과 WGSL의 `@binding(0)`은 같은 슬롯을 가리켜야 합니다. texture와 sampler도 보통 서로 다른 binding을 사용합니다. 다음 13C 챕터에서 실제 PNG와 sampler를 커스텀 Material에 연결합니다.
+Rust의 `#[uniform(0)]`과 WGSL의 `@binding(0)`은 같은 슬롯을 가리켜야 합니다. texture와 sampler도 보통 서로 다른 binding을 사용합니다. 다음 20B 챕터에서 실제 PNG와 sampler를 커스텀 Material에 연결합니다.
 
 ## 샘플 코드
 
@@ -138,11 +138,11 @@ struct PipelineMaterial {
 
 impl Material2d for PipelineMaterial {
     fn vertex_shader() -> ShaderRef {
-        "shaders/13b_pipeline.wgsl".into()
+        "shaders/20a_pipeline.wgsl".into()
     }
 
     fn fragment_shader() -> ShaderRef {
-        "shaders/13b_pipeline.wgsl".into()
+        "shaders/20a_pipeline.wgsl".into()
     }
 }
 ```
@@ -182,7 +182,7 @@ fn fragment(input: VertexOutput) -> @location(0) vec4<f32> {
 }
 ```
 
-전체 Rust 코드는 `examples/part2/space_survivor/src/bin/13b_rendering_pipeline.rs`, WGSL은 `assets/shaders/13b_pipeline.wgsl`에 있습니다.
+전체 Rust 코드는 `examples/part2/space_survivor/src/bin/20a_rendering_pipeline.rs`, WGSL은 `assets/shaders/20a_pipeline.wgsl`에 있습니다.
 
 ## 코드 설명
 
@@ -208,8 +208,8 @@ WGSL 문법이나 binding이 틀리면 Rust 컴파일은 성공할 수 있지만
 
 `options.z`를 시간 값으로 사용해 정점이 좌우로 흔들리도록 만드세요. Rust System에서 Material의 uniform만 변경하고 Mesh와 Transform은 변경하지 않아야 합니다. 그 뒤 GPU 애니메이션과 `Transform` 이동의 차이를 정리하세요.
 
-과제를 먼저 직접 수행한 뒤 필요할 때 [힌트와 수행 예시](exercises/part2/13b_rendering_pipeline.md)를 확인하세요.
+과제를 먼저 직접 수행한 뒤 필요할 때 [힌트와 수행 예시](exercises/part2/20a_rendering_pipeline.md)를 확인하세요.
 
 ## 다음 챕터
 
-다음 13C 챕터에서는 실제 이미지 texture와 sampler를 `Material2d`에 연결하고, WGSL에서 픽셀 색상 효과를 구현합니다.
+다음 20B 챕터에서는 실제 이미지 texture와 sampler를 `Material2d`에 연결하고, WGSL에서 픽셀 색상 효과를 구현합니다.

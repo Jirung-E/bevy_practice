@@ -1,4 +1,4 @@
-# 13D. Rust-WGSL 연결과 Shader Hot Reload
+# 20C. Rust-WGSL 연결과 Shader Hot Reload
 
 ## 학습 목표
 
@@ -14,7 +14,7 @@
 
 ## 이번에 만들 결과물
 
-13C 예제를 실행한 채 WGSL 파일의 흔들림 배율과 피격색을 수정합니다. 저장 후 새 shader가 자동으로 컴파일되어 화면에 반영되는 과정을 확인합니다.
+20B 예제를 실행한 채 WGSL 파일의 흔들림 배율과 피격색을 수정합니다. 저장 후 새 shader가 자동으로 컴파일되어 화면에 반영되는 과정을 확인합니다.
 
 아래 명령은 이 교재 저장소에 포함된 완성 샘플을 실행합니다. 본문만 따라 만든 별도 프로젝트에서는 현재 프로젝트 구성에 맞춰 `cargo run`을 실행하세요.
 
@@ -25,7 +25,7 @@ cargo run -p space_survivor --bin material_2d
 실행 중 다음 파일을 편집합니다.
 
 ```text
-examples/part2/space_survivor/assets/shaders/13c_sprite_effect.wgsl
+examples/part2/space_survivor/assets/shaders/20b_sprite_effect.wgsl
 ```
 
 ## 핵심 개념
@@ -35,7 +35,7 @@ examples/part2/space_survivor/assets/shaders/13c_sprite_effect.wgsl
 첫 번째 연결은 shader asset 경로입니다.
 
 ```rust
-const SHADER_PATH: &str = "shaders/13c_sprite_effect.wgsl";
+const SHADER_PATH: &str = "shaders/20b_sprite_effect.wgsl";
 
 impl Material2d for SpriteEffectMaterial {
     fn vertex_shader() -> ShaderRef {
@@ -158,8 +158,8 @@ Material binding 구조를 바꾸는 실습은 더 조심해야 합니다. Rust 
 
 shader reload 성공과 실패를 화면 UI에 표시하는 개발 전용 Plugin을 설계하세요. `AssetEvent<Shader>`를 읽되 게임 규칙이나 저장 데이터에는 개발 도구 상태가 섞이지 않게 구성하세요.
 
-과제를 먼저 직접 수행한 뒤 필요할 때 [힌트와 수행 예시](exercises/part2/13d_shader_hot_reload.md)를 확인하세요.
+과제를 먼저 직접 수행한 뒤 필요할 때 [힌트와 수행 예시](exercises/part2/20c_shader_hot_reload.md)를 확인하세요.
 
 ## 다음 챕터
 
-다음은 기존 총알과 적 생성 실습으로 돌아갑니다. 이후 3D 셰이더 챕터에서는 같은 연결 구조를 PBR Material에 적용하므로 이 챕터만 다시 참고해도 됩니다.
+다음 20D에서는 셰이더가 아니라 ECS Entity의 생명주기로 폭발과 추진 불꽃을 만드는 2D 파티클 시스템을 구현합니다.

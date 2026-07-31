@@ -37,7 +37,7 @@ cargo run -p product_showcase --bin 30a_custom_pbr_material
 Rust Material 데이터 → AsBindGroup의 binding 번호 → WGSL의 같은 binding → GPU 처리
 ```
 
-2D에서 다룬 [렌더링 파이프라인과 WGSL 연결](13B_RenderingPipeline.md), [Material2d 이펙트](13C_Material2d.md), [셰이더 핫 리로드](13D_ShaderHotReload.md)를 먼저 읽으면 셰이더 단계와 바인딩을 더 자세히 복습할 수 있습니다. 이 장에서도 필요한 내용을 다시 설명하므로 Part 2 전체를 먼저 읽을 필요는 없습니다.
+2D에서 다룬 [렌더링 파이프라인과 WGSL 연결](20A_RenderingPipeline.md), [Material2d 이펙트](20B_Material2d.md), [셰이더 핫 리로드](20C_ShaderHotReload.md)를 먼저 읽으면 셰이더 단계와 바인딩을 더 자세히 복습할 수 있습니다. 이 장에서도 필요한 내용을 다시 설명하므로 Part 2 전체를 먼저 읽을 필요는 없습니다.
 
 ### StandardMaterial을 버리지 않고 확장하기
 

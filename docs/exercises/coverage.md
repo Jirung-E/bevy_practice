@@ -27,9 +27,6 @@
 | 1 | 12C. Scene과 Save Game | ✓ | [보기](part1/12c_scene_save_game.md) | `save_game_model` |
 | 2 | 13. 플레이어 이동 | ✓ | [보기](part2/13_player_movement.md) | `movement_solution` |
 | 2 | 13A. TextureAtlas | ✓ | [보기](part2/13a_texture_atlas.md) | `texture_atlas_solution` |
-| 2 | 13B. 렌더링 파이프라인 | ✓ | [보기](part2/13b_rendering_pipeline.md) | `rendering_pipeline_solution` |
-| 2 | 13C. Material2d | ✓ | [보기](part2/13c_material2d.md) | `material_effects_solution` |
-| 2 | 13D. Shader Hot Reload | ✓ | [보기](part2/13d_shader_hot_reload.md) | `shader_reload_status_solution` |
 | 2 | 14. 총알 | ✓ | [보기](part2/14_bullets.md) | `combat_solution` |
 | 2 | 15. 적 | ✓ | [보기](part2/15_enemies.md) | `combat_solution` |
 | 2 | 16. 충돌 | ✓ | [보기](part2/16_collision.md) | `combat_solution` |
@@ -38,6 +35,10 @@
 | 2 | 19. 저장 | ✓ | [보기](part2/19_save.md) | `game_flow_solution` |
 | 2 | 19A. 게임 상태 저장 | ✓ | [보기](part2/19a_save_game_roundtrip.md) | `19a_save_game` |
 | 2 | 20. 게임오버 | ✓ | [보기](part2/20_game_over.md) | `game_flow_solution` |
+| 2 | 20A. 렌더링 파이프라인 | ✓ | [보기](part2/20a_rendering_pipeline.md) | `rendering_pipeline_solution` |
+| 2 | 20B. Material2d | ✓ | [보기](part2/20b_material2d.md) | `material_effects_solution` |
+| 2 | 20C. Shader Hot Reload | ✓ | [보기](part2/20c_shader_hot_reload.md) | `shader_reload_status_solution` |
+| 2 | 20D. 파티클 시스템 | ✓ | [보기](part2/20d_particle_system.md) | `particle_system` |
 | 3 | 21. GUI 애플리케이션 | ✓ | [보기](part3/21_gui_application.md) | `gui_workflow_solution` |
 | 3 | 22. GUI 레이아웃 | ✓ | [보기](part3/22_gui_layout.md) | `gui_workflow_solution` |
 | 3 | 23. GUI 이벤트 | ✓ | [보기](part3/23_gui_events.md) | `gui_workflow_solution` |

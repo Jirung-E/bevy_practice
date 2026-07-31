@@ -1,3 +1,4 @@
+// 20A: vertex와 fragment 단계를 독립적으로 관찰한다.
 #import bevy_sprite::{
     mesh2d_functions as mesh_functions,
     mesh2d_vertex_output::VertexOutput,
@@ -10,28 +11,19 @@ struct Vertex {
 };
 
 @group(#{MATERIAL_BIND_GROUP}) @binding(0)
-var<uniform> effect: vec4<f32>;
+var<uniform> base_color: vec4<f32>;
 
 @group(#{MATERIAL_BIND_GROUP}) @binding(1)
-var color_texture: texture_2d<f32>;
-
-@group(#{MATERIAL_BIND_GROUP}) @binding(2)
-var color_sampler: sampler;
-
-@group(#{MATERIAL_BIND_GROUP}) @binding(3)
-var<uniform> uv_rect: vec4<f32>;
-
-// 13D hot reload 실습에서는 앱을 실행한 채 이 두 상수를 수정한다.
-const WOBBLE_SCALE: f32 = 50.0;
-const HIT_COLOR: vec3<f32> = vec3<f32>(1.0, 0.25, 0.18);
+var<uniform> options: vec4<f32>;
 
 @vertex
 fn vertex(vertex: Vertex) -> VertexOutput {
     var output: VertexOutput;
     var local_position = vertex.position;
 
-    let phase = effect.x * 5.0 + local_position.y * 0.035;
-    local_position.x += sin(phase) * effect.y * WOBBLE_SCALE;
+    // V 키가 켜지면 위쪽 정점일수록 오른쪽으로 이동한다.
+    let normalized_y = local_position.y / 130.0;
+    local_position.x += normalized_y * 90.0 * options.x;
 
     let world_from_local = mesh_functions::get_world_from_local(vertex.instance_index);
     output.world_position = mesh_functions::mesh2d_position_local_to_world(
@@ -45,13 +37,6 @@ fn vertex(vertex: Vertex) -> VertexOutput {
 
 @fragment
 fn fragment(input: VertexOutput) -> @location(0) vec4<f32> {
-    let atlas_uv = uv_rect.xy + input.uv * uv_rect.zw;
-    let texture_color = textureSample(color_texture, color_sampler, atlas_uv);
-
-    if texture_color.a < 0.05 {
-        discard;
-    }
-
-    let hit_color = vec4<f32>(HIT_COLOR, texture_color.a);
-    return mix(texture_color, hit_color, effect.z);
+    let uv_color = vec4<f32>(input.uv.x, input.uv.y, 1.0 - input.uv.x, 1.0);
+    return mix(base_color, uv_color, options.y);
 }
