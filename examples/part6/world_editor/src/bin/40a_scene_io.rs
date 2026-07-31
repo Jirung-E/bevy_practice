@@ -302,6 +302,15 @@ fn spawn_ui(commands: &mut Commands) {
     ));
 }
 
+fn command_modifier_pressed(keys: &ButtonInput<KeyCode>) -> bool {
+    keys.any_pressed([
+        KeyCode::ControlLeft,
+        KeyCode::ControlRight,
+        KeyCode::SuperLeft,
+        KeyCode::SuperRight,
+    ])
+}
+
 #[expect(
     clippy::type_complexity,
     reason = "읽기용 편집 Entity Query와 Transform 쓰기 Query를 ParamSet으로 분리한다"
@@ -317,8 +326,8 @@ fn handle_shortcuts(
         Query<&mut Transform, With<Editable>>,
     )>,
 ) {
-    let control = keys.pressed(KeyCode::ControlLeft) || keys.pressed(KeyCode::ControlRight);
-    if control && keys.just_pressed(KeyCode::KeyS) {
+    let command = command_modifier_pressed(&keys);
+    if command && keys.just_pressed(KeyCode::KeyS) {
         match save_scene(&document.path, &editable_queries.p0()) {
             Ok(()) => {
                 document.dirty = false;
@@ -328,7 +337,7 @@ fn handle_shortcuts(
         }
         return;
     }
-    if control && keys.just_pressed(KeyCode::KeyO) {
+    if command && keys.just_pressed(KeyCode::KeyO) {
         match load_records(&document.path) {
             Ok(records) => {
                 despawn_editables(&mut commands, &editable_queries.p0());
@@ -346,7 +355,7 @@ fn handle_shortcuts(
         }
         return;
     }
-    if control && keys.just_pressed(KeyCode::KeyN) {
+    if command && keys.just_pressed(KeyCode::KeyN) {
         despawn_editables(&mut commands, &editable_queries.p0());
         selection.0 = None;
         document.next_id = 1;
@@ -713,6 +722,17 @@ mod tests {
             .serialize(&registry)
             .unwrap();
         format!("{SCENE_HEADER}\n{ron}")
+    }
+
+    #[test]
+    fn control_and_macos_command_are_both_shortcut_modifiers() {
+        for modifier in [KeyCode::ControlLeft, KeyCode::SuperLeft] {
+            let mut keys = ButtonInput::default();
+            keys.press(modifier);
+            assert!(command_modifier_pressed(&keys));
+        }
+
+        assert!(!command_modifier_pressed(&ButtonInput::default()));
     }
 
     #[test]

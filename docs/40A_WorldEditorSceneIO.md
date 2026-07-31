@@ -17,9 +17,9 @@
 
 Part 6에서 만든 미니 World Editor에 Scene 문서 흐름을 추가합니다.
 
-- `Ctrl+N`: 새 빈 Scene
-- `Ctrl+O`: `target/world_editor_scene.scn.ron` 열기
-- `Ctrl+S`: 현재 Scene 저장
+- `Ctrl+N` / macOS `Command+N`: 새 빈 Scene
+- `Ctrl+O` / macOS `Command+O`: `target/world_editor_scene.scn.ron` 열기
+- `Ctrl+S` / macOS `Command+S`: 현재 Scene 저장
 - `Tab`: 다음 Entity 선택
 - 방향키·`PageUp`·`PageDown`: Inspector의 Transform 편집
 - `1`·`2`: Cube·Sphere 생성
@@ -132,11 +132,11 @@ if let Some(parent) = record.parent
 
 | 시나리오 | 조작 | 기대 결과 |
 |---|---|---|
-| 새 문서 | `Ctrl+N` | 빈 Hierarchy, `MODIFIED *` |
+| 새 문서 | `Ctrl+N` / `Command+N` | 빈 Hierarchy, `MODIFIED *` |
 | 편집 | Entity 생성·이동 | Inspector 값 변경, dirty 표시 |
-| 저장 | `Ctrl+S` | `SAVED`, 경로와 성공 메시지 |
+| 저장 | `Ctrl+S` / `Command+S` | `SAVED`, 경로와 성공 메시지 |
 | 재실행 | 창을 닫고 다시 실행 | 이름·Transform·부모 관계 복원 |
-| 열기 실패 | 파일 내용을 손상 후 `Ctrl+O` | 현재 World 유지, `OPEN ERROR` |
+| 열기 실패 | 파일 내용을 손상 후 `Ctrl+O` / `Command+O` | 현재 World 유지, `OPEN ERROR` |
 | 오래된 버전 | 헤더 버전을 0으로 변경 | 지원하지 않는 버전 메시지 |
 | 누락 부모 | 존재하지 않는 parent ID 입력 | 관계 오류 메시지 |
 

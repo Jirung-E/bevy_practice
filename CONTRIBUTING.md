@@ -34,6 +34,15 @@ Windows에서는 모든 예제를 순차적으로 짧게 실행해 경고, 오�
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts\smoke_examples.ps1
 ```
 
+macOS와 Linux에서는 같은 검사를 셸 스크립트로 실행합니다. 이 스크립트는 `python3`를 사용해 Cargo metadata를 읽습니다. 인수로 패키지 이름을 넘기면 해당 패키지만 검사하며, 기본 실행 시간은 환경 변수로 바꿀 수 있습니다.
+
+```bash
+bash ./scripts/smoke_examples.sh
+SECONDS_PER_EXAMPLE=1 bash ./scripts/smoke_examples.sh space_survivor
+```
+
+GitHub Actions의 `Validate deployment packages` workflow는 macOS에서 전체 workspace의 모든 target을 컴파일하고 테스트합니다. 창과 Metal 렌더링까지 확인하는 스모크 검사는 화면이 연결된 실제 Mac에서 위 스크립트로 수행합니다.
+
 Windows MSVC에서는 Bevy 전체 기능의 디버그 심볼이 PDB 크기 한도를 넘을 수 있습니다. 루트의 `[profile.dev] debug = 0`은 `LNK1140: limit exceeded for program database`를 방지하기 위한 설정이므로 제거하지 않습니다.
 
 ## 버전 업데이트
