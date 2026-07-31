@@ -18,6 +18,6 @@
 게임을 먼저 완성한 뒤 렌더링 내부 구조와 시각 효과를 독립적으로 학습합니다. Part 4의 커스텀 PBR 및 후처리 셰이더로 이어지는 선택 과정입니다.
 
 - [20A. 2D 렌더링 파이프라인과 WGSL](../20A_RenderingPipeline.md)
-- [20B. Material2d 커스텀 셰이더](../20B_Material2d.md)
-- [20C. Rust-WGSL 연결과 Shader Hot Reload](../20C_ShaderHotReload.md)
-- [20D. ECS로 만드는 2D 파티클 시스템](../20D_ParticleSystem.md)
+- [20B. 절차적 우주 배경과 UV 애니메이션](../20B_ProceduralBackground.md)
+- [20C. Space Survivor 실전 셰이더 효과](../20C_SpaceSurvivorShaderEffects.md)
+- [20D. Rust-WGSL 연결과 Shader Hot Reload](../20D_ShaderHotReload.md)

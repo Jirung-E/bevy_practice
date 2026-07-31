@@ -121,7 +121,7 @@ UV는 텍스처 안의 위치를 나타내는 2차원 좌표입니다. 일반적
 - texture: 2차원 이미지 데이터를 GPU가 읽을 수 있는 리소스입니다.
 - sampler: texture의 좌표가 픽셀 사이에 있거나 영역 밖일 때 보간·반복 방법을 정합니다.
 
-Rust의 `#[uniform(0)]`과 WGSL의 `@binding(0)`은 같은 슬롯을 가리켜야 합니다. texture와 sampler도 보통 서로 다른 binding을 사용합니다. 다음 20B 챕터에서 실제 PNG와 sampler를 커스텀 Material에 연결합니다.
+Rust의 `#[uniform(0)]`과 WGSL의 `@binding(0)`은 같은 슬롯을 가리켜야 합니다. texture와 sampler도 보통 서로 다른 binding을 사용합니다. 다음 20B 챕터에서는 시간과 설정 uniform을 전달하고 UV만으로 별 배경을 생성합니다.
 
 ## 샘플 코드
 
@@ -212,4 +212,4 @@ WGSL 문법이나 binding이 틀리면 Rust 컴파일은 성공할 수 있지만
 
 ## 다음 챕터
 
-다음 20B 챕터에서는 실제 이미지 texture와 sampler를 `Material2d`에 연결하고, WGSL에서 픽셀 색상 효과를 구현합니다.
+다음 20B 챕터에서는 이미지 없이 WGSL에서 별을 생성하고, UV와 time uniform으로 여러 레이어가 흐르는 우주 배경을 구현합니다.

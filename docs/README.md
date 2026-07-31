@@ -70,9 +70,9 @@
 - [19A. 게임 상태 저장과 불러오기](19A_SaveGameRoundTrip.md)
 - [20. 게임오버와 재시작](20_GameOver.md)
 - [20A. 2D 렌더링 파이프라인과 WGSL](20A_RenderingPipeline.md)
-- [20B. Material2d 커스텀 셰이더](20B_Material2d.md)
-- [20C. Rust-WGSL 연결과 Shader Hot Reload](20C_ShaderHotReload.md)
-- [20D. ECS로 만드는 2D 파티클 시스템](20D_ParticleSystem.md)
+- [20B. 절차적 우주 배경과 UV 애니메이션](20B_ProceduralBackground.md)
+- [20C. Space Survivor 실전 셰이더 효과](20C_SpaceSurvivorShaderEffects.md)
+- [20D. Rust-WGSL 연결과 Shader Hot Reload](20D_ShaderHotReload.md)
 
 ### Part 3. GUI 애플리케이션 제작
 

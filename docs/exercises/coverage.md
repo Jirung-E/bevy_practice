@@ -36,9 +36,9 @@
 | 2 | 19A. 게임 상태 저장 | ✓ | [보기](part2/19a_save_game_roundtrip.md) | `19a_save_game` |
 | 2 | 20. 게임오버 | ✓ | [보기](part2/20_game_over.md) | `game_flow_solution` |
 | 2 | 20A. 렌더링 파이프라인 | ✓ | [보기](part2/20a_rendering_pipeline.md) | `rendering_pipeline_solution` |
-| 2 | 20B. Material2d | ✓ | [보기](part2/20b_material2d.md) | `material_effects_solution` |
-| 2 | 20C. Shader Hot Reload | ✓ | [보기](part2/20c_shader_hot_reload.md) | `shader_reload_status_solution` |
-| 2 | 20D. 파티클 시스템 | ✓ | [보기](part2/20d_particle_system.md) | `particle_system` |
+| 2 | 20B. 절차적 우주 배경 | ✓ | [보기](part2/20b_procedural_background.md) | `procedural_background` |
+| 2 | 20C. 실전 셰이더 효과 | ✓ | [보기](part2/20c_shader_effects.md) | `shader_effects` |
+| 2 | 20D. Shader Hot Reload | ✓ | [보기](part2/20d_shader_hot_reload.md) | `shader_reload_status_solution` |
 | 3 | 21. GUI 애플리케이션 | ✓ | [보기](part3/21_gui_application.md) | `gui_workflow_solution` |
 | 3 | 22. GUI 레이아웃 | ✓ | [보기](part3/22_gui_layout.md) | `gui_workflow_solution` |
 | 3 | 23. GUI 이벤트 | ✓ | [보기](part3/23_gui_events.md) | `gui_workflow_solution` |

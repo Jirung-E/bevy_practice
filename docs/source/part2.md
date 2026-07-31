@@ -81,38 +81,40 @@
 {{#include ../../examples/part2/space_survivor/assets/shaders/20a_pipeline.wgsl}}
 ```
 
-### 20B · Material2d 커스텀 셰이더
+### 20B · 절차적 우주 배경과 UV 애니메이션
 
 #### Rust
 
 ```rust
-{{#include ../../examples/part2/space_survivor/src/bin/20b_material_2d.rs}}
+{{#include ../../examples/part2/space_survivor/src/bin/20b_procedural_background.rs}}
 ```
 
 #### WGSL
 
 ```wgsl
-{{#include ../../examples/part2/space_survivor/assets/shaders/20b_sprite_effect.wgsl}}
+{{#include ../../examples/part2/space_survivor/assets/shaders/20b_starfield.wgsl}}
 ```
 
-### 20C · Rust-WGSL 연결과 Shader Hot Reload
-
-20C는 20B의 실행 프로젝트를 그대로 사용하며, 아래 두 파일을 실행 중 편집합니다.
+### 20C · Space Survivor 실전 셰이더 효과
 
 #### Rust
 
 ```rust
-{{#include ../../examples/part2/space_survivor/src/bin/20b_material_2d.rs}}
+{{#include ../../examples/part2/space_survivor/src/bin/20c_shader_effects.rs}}
 ```
 
-#### Hot reload 대상 WGSL
+#### Dissolve WGSL
 
 ```wgsl
-{{#include ../../examples/part2/space_survivor/assets/shaders/20b_sprite_effect.wgsl}}
+{{#include ../../examples/part2/space_survivor/assets/shaders/20c_dissolve.wgsl}}
 ```
 
-### 20D · ECS로 만드는 2D 파티클 시스템
+#### Shield WGSL
 
-```rust
-{{#include ../../examples/part2/space_survivor/src/bin/20d_particle_system.rs}}
+```wgsl
+{{#include ../../examples/part2/space_survivor/assets/shaders/20c_shield.wgsl}}
 ```
+
+### 20D · Rust-WGSL 연결과 Shader Hot Reload
+
+20D는 20B와 20C의 실행 프로젝트 및 WGSL 파일을 그대로 사용합니다. 위 Rust-WGSL 연결을 유지한 채 shader 계산식과 상수를 실행 중 편집합니다.

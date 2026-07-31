@@ -19,9 +19,9 @@ name = "rendering_pipeline"
 path = "src/bin/20a_rendering_pipeline.rs"
 
 [[bin]]
-name = "material_2d"
-path = "src/bin/20b_material_2d.rs"
+name = "procedural_background"
+path = "src/bin/20b_procedural_background.rs"
 
 [[bin]]
-name = "particle_system"
-path = "src/bin/20d_particle_system.rs"
+name = "shader_effects"
+path = "src/bin/20c_shader_effects.rs"
