@@ -5,6 +5,7 @@
 - 일반 Rust 함수가 Bevy System이 되는 조건을 이해한다.
 - `Startup`과 `Update` 스케줄의 차이를 구분한다.
 - System 실행 순서를 명시적으로 연결할 수 있다.
+- 객체 메서드와 ECS System의 역할 차이를 설명할 수 있다.
 
 ## 이 내용으로 만들 수 있는 것
 
@@ -24,6 +25,29 @@ cargo run -p ecs_basics --bin system
 ## 핵심 개념
 
 System은 World의 데이터를 입력으로 받는 Rust 함수입니다. Bevy는 함수 매개변수의 타입을 보고 어떤 데이터에 읽기·쓰기 접근하는지 판단합니다. 서로 충돌하지 않는 System은 병렬 실행할 수 있습니다.
+
+### 객체의 메서드에서 데이터 조합을 처리하는 System으로
+
+객체지향 코드에서는 대상을 찾은 뒤 그 객체의 메서드를 호출하는 형태가 흔합니다.
+
+```rust,ignore
+player.move_forward();
+enemy.take_damage(10);
+```
+
+ECS에서는 동작을 특정 클래스 안에 묶기보다, 필요한 Component 조합을 매개변수로 받는 System으로 작성합니다. 다음 이동 System은 `Player`라는 객체의 메서드가 아니라 `Player + Position + Velocity` 조합에 적용되는 규칙입니다.
+
+```rust
+fn move_player(mut players: Query<(&mut Position, &Velocity), With<Player>>) {
+    for (mut position, velocity) in &mut players {
+        position.0 += velocity.0;
+    }
+}
+```
+
+이 구조에서는 `Health`를 가진 플레이어·적·파괴 가능한 상자를 하나의 피해 System으로 처리할 수 있습니다. 새 대상 종류를 추가할 때 기존 기반 클래스를 수정하지 않고 필요한 Component를 조합하면 됩니다.
+
+그렇다고 Component에 `impl`을 작성하면 안 된다는 뜻은 아닙니다. 값 검증, 거리 계산처럼 World 접근이 필요 없는 작은 연산은 일반 Rust 메서드로 둘 수 있습니다. 여러 Entity나 Resource를 읽고 게임의 실행 흐름에 참여하는 로직은 System이 담당하는 편이 자연스럽습니다.
 
 스케줄은 System이 실행될 시점을 정합니다.
 
@@ -73,6 +97,7 @@ fn main() {
 - `Query<(&mut Position, &Velocity)>`는 Position을 쓰고 Velocity를 읽습니다.
 - `With<Player>`는 Player 표식이 붙은 Entity만 선택합니다.
 - `for ... in &mut players`는 조건에 맞는 모든 Entity를 순회합니다.
+- System은 `Player`의 메서드를 호출하는 대신 필요한 Component 조합에 동작을 적용합니다.
 - `chain()`은 앞 System의 deferred 명령 적용까지 포함해 순차 실행합니다.
 - 수동으로 `app.update()`를 두 번 호출했으므로 위치가 2.5, 5.0으로 바뀝니다.
 
