@@ -47,7 +47,7 @@ fn move_player(mut players: Query<(&mut Position, &Velocity), With<Player>>) {
 
 이 구조에서는 `Health`를 가진 플레이어·적·파괴 가능한 상자를 하나의 피해 System으로 처리할 수 있습니다. 새 대상 종류를 추가할 때 기존 기반 클래스를 수정하지 않고 필요한 Component를 조합하면 됩니다.
 
-그렇다고 Component에 `impl`을 작성하면 안 된다는 뜻은 아닙니다. 값 검증, 거리 계산처럼 World 접근이 필요 없는 작은 연산은 일반 Rust 메서드로 둘 수 있습니다. 여러 Entity나 Resource를 읽고 게임의 실행 흐름에 참여하는 로직은 System이 담당하는 편이 자연스럽습니다.
+Bevy ECS가 클래스 기반 객체지향 모델이 아니라고 해서 Component에 `impl`을 작성하거나 Rust trait을 사용하면 안 된다는 뜻은 아닙니다. 값 검증, 거리 계산처럼 World 접근이 필요 없는 작은 연산은 일반 Rust 메서드로 둘 수 있습니다. 여러 Entity나 Resource를 읽고 게임의 실행 흐름에 참여하는 로직은 System이 담당하는 편이 자연스럽습니다.
 
 스케줄은 System이 실행될 시점을 정합니다.
 

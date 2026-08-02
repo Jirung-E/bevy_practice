@@ -39,6 +39,12 @@ Bevy의 중심에는 ECS(Entity Component System)가 있습니다.
 
 예를 들어 플레이어는 하나의 Entity이고, 위치·체력·이동 속도는 Component이며, 키보드 입력으로 위치를 바꾸는 코드는 System입니다.
 
+### Bevy ECS는 클래스 기반 객체지향 모델이 아니다
+
+Bevy의 게임 World는 게임 대상을 클래스 인스턴스와 상속 계층으로 구성하지 않습니다. Entity는 `Player` 클래스에서 생성한 객체가 아니라 World 안의 대상을 가리키는 ID입니다. `Player`, `Health`, `Position` 같은 Component가 함께 붙어 있을 때 그 조합을 플레이어로 해석합니다. Component끼리 필드나 메서드를 상속하지 않으며, World의 동작은 주로 System이 Component 조합을 조회해 처리합니다.
+
+그렇다고 Bevy나 Rust에서 객체지향적인 설계 기법을 전혀 사용할 수 없다는 뜻은 아닙니다. Rust의 `impl`, trait, 캡슐화는 그대로 활용할 수 있습니다. 중요한 차이는 **게임 World의 대상을 하나의 클래스와 상속 구조로 모델링하지 않는다**는 점입니다. Part 1에서는 객체지향의 필드·메서드·다형성·생성자가 ECS의 Component·System·Query·Bundle과 어떻게 다른지 차례대로 비교합니다.
+
 ### 교재의 버전
 
 이 교재는 2026년 7월 기준 최신 안정판인 Bevy 0.19를 사용합니다. Bevy는 아직 1.0 이전이므로 새 버전에서 API가 달라질 수 있습니다. 인터넷의 오래된 예제를 섞어 쓰지 말고, 이 저장소의 `Cargo.toml`과 공식 0.19 문서를 기준으로 진행하세요.

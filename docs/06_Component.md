@@ -25,11 +25,17 @@ cargo run -p ecs_basics --bin component
 
 ## 핵심 개념
 
+> **Bevy ECS는 클래스 기반 객체지향 모델이 아닙니다.**
+>
+> Entity는 `Player` 클래스의 인스턴스가 아니라 World 안의 ID입니다. `Player`, `Health`, `Position` 같은 Component 조합이 그 Entity의 데이터와 역할을 나타냅니다. Component끼리 필드나 메서드를 상속하지 않으며, 동작은 주로 System이 Component 조합을 조회해 처리합니다.
+
 Component는 Entity에 붙는 Rust 데이터입니다. 상속 계층으로 대상을 정의하는 대신 필요한 데이터의 조합으로 대상을 구성합니다.
 
 ### 객체지향 상속과 ECS 조합
 
 객체지향 설계에서는 `Character` 기반 클래스를 `Player`와 `Enemy`가 상속하고, 공통 필드와 메서드를 물려받는 구조를 자주 사용합니다. Bevy ECS에서 Entity는 특정 클래스의 인스턴스가 아닙니다. Entity는 ID이고, 그 Entity에 붙은 Component 조합이 현재 역할과 기능을 결정합니다.
+
+여기서 “클래스 기반 객체지향 모델이 아니다”라는 말은 `impl`이나 trait을 금지한다는 뜻이 아닙니다. Component 값 자체의 검증·계산·캡슐화에는 일반 Rust 메서드와 trait을 사용할 수 있습니다. 다만 게임 대상 전체를 하나의 클래스에 넣고 상속시키는 대신, World에서는 Entity와 Component 조합으로 표현합니다.
 
 | 객체지향 방식 | Bevy ECS 방식 |
 |---|---|
