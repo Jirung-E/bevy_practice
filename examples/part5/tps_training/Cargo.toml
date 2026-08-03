@@ -10,3 +10,6 @@ bevy.workspace = true
 avian3d.workspace = true
 bevy_landmass.workspace = true
 
+[[bin]]
+name = "camera_collision"
+path = "src/bin/34a_camera_collision.rs"

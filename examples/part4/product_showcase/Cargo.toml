@@ -7,3 +7,7 @@ rust-version.workspace = true
 
 [dependencies]
 bevy = { workspace = true, features = ["file_watcher"] }
+
+[[bin]]
+name = "multi_camera_layers"
+path = "src/bin/30d_multi_camera_layers.rs"

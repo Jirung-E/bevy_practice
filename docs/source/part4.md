@@ -72,3 +72,9 @@
 ```rust
 {{#include ../../examples/part4/product_showcase/src/bin/30c_object_picking.rs}}
 ```
+
+### 30D · 멀티 카메라와 RenderLayers
+
+```rust
+{{#include ../../examples/part4/product_showcase/src/bin/30d_multi_camera_layers.rs}}
+```

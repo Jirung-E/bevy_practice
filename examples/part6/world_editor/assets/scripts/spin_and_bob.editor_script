@@ -1,0 +1,7 @@
+(
+    commands: [
+        RotateY(degrees_per_second: 45.0),
+        Bob(height: 0.35, speed: 2.0),
+        Tint(rgb: (0.2, 0.62, 1.0)),
+    ],
+)

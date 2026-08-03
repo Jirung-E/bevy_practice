@@ -8,3 +8,4 @@ Hierarchy, Inspector, Viewport, Asset Browser와 Console을 갖춘 미니 에디
 - [39. Asset Browser](../39_AssetBrowser.md)
 - [40. Console](../40_Console.md)
 - [40A. World Editor Scene 저장과 불러오기](../40A_WorldEditorSceneIO.md)
+- [40B. 스크립트 연결과 Hot Reload](../40B_ScriptAttachmentHotReload.md)

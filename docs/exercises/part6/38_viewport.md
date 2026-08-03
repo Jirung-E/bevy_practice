@@ -14,11 +14,13 @@
 
 일정 간격의 X/Z 선을 Gizmo로 그리며 원점 축은 다른 색으로 표시합니다. 카메라 거리별 간격 단계가 있으면 멀리서 생기는 선 밀집을 줄일 수 있습니다.
 
-## P6-C38-A1 · 중앙 패널 viewport
+## P6-C38-P4 · 리사이즈와 DPI 확인
 
-UI에서 얻은 논리 픽셀 rect에 창 scale factor를 곱해 `Camera.viewport`의 물리 픽셀 position/size를 갱신합니다. 수행 예제는 1.5 DPI에서 논리 rect가 올바른 물리 rect로 바뀌는지 검사합니다.
+본문 예제는 UI의 논리 픽셀 rect에 창 scale factor를 곱해 `Camera.viewport`의 물리 픽셀 position/size를 갱신합니다. Windows 디스플레이 배율을 바꾸거나 서로 다른 DPI의 모니터 사이로 창을 이동해 보세요.
 
-창 resize뿐 아니라 DPI와 패널 레이아웃 변경도 갱신 조건입니다. 0 크기 viewport는 렌더를 건너뛰고, 포인터 좌표도 같은 rect 기준으로 변환해야 picking이 맞습니다.
+## P6-C38-A1 · 크기 조절 패널
+
+Splitter가 바꾼 패널 폭을 Resource 하나에 보관하세요. UI Node 폭, 물리 Viewport 계산과 `cursor_in_editor_viewport`가 같은 Resource를 읽어야 서로 어긋나지 않습니다. 0 크기 Viewport는 최소 1픽셀로 제한하거나 Camera를 비활성화합니다.
 
 ## 전체 코드 실행
 

@@ -44,6 +44,12 @@
 {{#include ../../examples/part1/ecs_basics/src/bin/10_commands.rs}}
 ```
 
+### 10A · Entity 수명과 제거 감지
+
+```rust
+{{#include ../../examples/part1/ecs_basics/src/bin/10a_entity_lifecycle.rs}}
+```
+
 ### 11 · Messages and Events
 
 ```rust
@@ -72,4 +78,28 @@
 
 ```rust
 {{#include ../../examples/part1/ecs_basics/src/bin/12c_save_game_model.rs}}
+```
+
+### 12D · ECS 동작 추상화와 스킬 시스템
+
+```rust
+{{#include ../../examples/part1/ecs_basics/src/bin/12d_behavior_abstraction.rs}}
+```
+
+### 12E · 입력 Action과 장치 독립적인 명령
+
+```rust
+{{#include ../../examples/part1/ecs_basics/src/bin/12e_input_actions.rs}}
+```
+
+### 12F · FixedUpdate와 입력 버퍼
+
+```rust
+{{#include ../../examples/part1/ecs_basics/src/bin/12f_fixed_update.rs}}
+```
+
+### 12G · ECS 테스트 전략
+
+```rust
+{{#include ../../examples/part1/ecs_basics/src/bin/12g_ecs_testing.rs}}
 ```

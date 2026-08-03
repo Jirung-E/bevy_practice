@@ -81,4 +81,4 @@ fn remove_defeated(mut commands: Commands, defeated: Query<Entity, With<Defeated
 
 ## 다음 챕터
 
-적 제거 사실을 점수 System에 직접 연결하지 않고 Message로 전달해 System 사이 결합도를 낮춥니다.
+[10A. Entity 수명과 제거 감지](10A_EntityLifecycle.md)에서 Component 제거와 despawn 이후의 참조 정리를 다룹니다.

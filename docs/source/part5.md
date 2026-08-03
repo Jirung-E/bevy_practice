@@ -42,6 +42,11 @@
 {{#include ../../examples/part5/tps_training/src/bin/34_physics.rs}}
 ```
 
+### 34A · TPS 카메라 충돌
+```rust
+{{#include ../../examples/part5/tps_training/src/bin/34a_camera_collision.rs}}
+```
+
 ### 35 · NavMesh
 ```rust
 {{#include ../../examples/part5/tps_training/src/bin/35_navmesh.rs}}

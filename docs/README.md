@@ -54,8 +54,16 @@
 - [08. Query: 원하는 데이터 찾기](08_Query.md)
 - [09. Resource: 전역 데이터 관리하기](09_Resource.md)
 - [10. Commands: 월드 구조 변경하기](10_Commands.md)
+- [10A. Entity 수명과 제거 감지](10A_EntityLifecycle.md)
 - [11. Messages와 Events: 시스템 사이 통신](11_MessagesAndEvents.md)
 - [12. States: 화면과 흐름 관리하기](12_States.md)
+- [12A. AssetServer와 Loading State](12A_AssetLoading.md)
+- [12B. Reflect와 DynamicWorld(Scene)](12B_ReflectDynamicWorld.md)
+- [12C. Scene과 Save Game 설계](12C_SceneAndSaveGame.md)
+- [12D. ECS 동작 추상화와 스킬 시스템](12D_BehaviorAbstraction.md)
+- [12E. 입력 Action과 장치 독립적인 명령](12E_InputActions.md)
+- [12F. FixedUpdate와 입력 버퍼](12F_FixedUpdate.md)
+- [12G. ECS 테스트 전략](12G_EcsTesting.md)
 
 ### Part 2. 2D 게임 제작
 
@@ -79,8 +87,10 @@
 - [21. 게임이 아닌 Bevy 애플리케이션](21_GuiApplication.md)
 - [22. GUI 레이아웃](22_GuiLayout.md)
 - [23. 버튼과 이벤트](23_GuiEvents.md)
+- [23A. 텍스트 입력, 포커스와 IME](23A_TextInputFocus.md)
 - [24. 파일 Drag & Drop](24_DragAndDrop.md)
 - [25. 파일 입출력](25_FileIO.md)
+- [25A. 비동기 파일 입출력](25A_BackgroundFileIO.md)
 - [26. GUI 상태 관리](26_GuiState.md)
 
 ### Part 4. 3D 입문
@@ -90,6 +100,7 @@
 - [29. StandardMaterial과 PBR](29_Material.md)
 - [30. Light와 그림자](30_Light.md)
 - [30C. 3D 오브젝트 마우스 선택](30C_ObjectPicking.md)
+- [30D. 멀티 카메라와 RenderLayers](30D_MultiCameraRenderLayers.md)
 
 ### Part 5. 3D 게임 제작
 
@@ -97,6 +108,7 @@
 - [32. TPS 추적 카메라](32_TpsCamera.md)
 - [33. 캐릭터 애니메이션](33_Animation.md)
 - [34. Avian 3D 물리](34_Physics.md)
+- [34A. TPS 카메라 충돌](34A_TpsCameraCollision.md)
 - [35. Landmass NavMesh](35_NavMesh.md)
 
 ### Part 6. 게임 에디터 제작
@@ -106,6 +118,8 @@
 - [38. Viewport](38_Viewport.md)
 - [39. Asset Browser](39_AssetBrowser.md)
 - [40. Console](40_Console.md)
+- [40A. World Editor Scene 저장과 불러오기](40A_WorldEditorSceneIO.md)
+- [40B. 스크립트 연결과 Hot Reload](40B_ScriptAttachmentHotReload.md)
 
 ### Part 7. 실전 프로젝트 구조
 
@@ -113,6 +127,7 @@
 - [42. Rust 모듈화](42_Modularization.md)
 - [43. Assets 관리](43_Assets.md)
 - [44. ECS 아키텍처](44_EcsArchitecture.md)
+- [44A. 결정론적 시뮬레이션과 입력 리플레이](44A_DeterministicReplay.md)
 - [45. 측정 기반 최적화](45_Optimization.md)
 - [46. 데스크톱과 WASM 빌드·배포](46_DesktopWasmDeployment.md)
 

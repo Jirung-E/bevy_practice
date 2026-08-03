@@ -96,4 +96,4 @@ fn handle_click(
 
 ## 다음 챕터
 
-Part 5에서는 지금까지 만든 3D 장면에 플레이어, 카메라, 애니메이션, 물리와 NavMesh를 결합합니다. Part 6의 Viewport에서는 같은 Picking 흐름을 Hierarchy와 Inspector 선택에 연결합니다.
+여러 Camera의 출력 영역과 렌더 대상을 분리해 미니맵을 만듭니다.

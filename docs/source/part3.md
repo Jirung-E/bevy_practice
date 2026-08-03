@@ -27,6 +27,11 @@
 {{#include ../../examples/part3/file_lens/src/bin/23_events.rs}}
 ```
 
+### 23A · 텍스트 입력과 IME
+```rust
+{{#include ../../examples/part3/file_lens/src/bin/23a_text_input_focus.rs}}
+```
+
 ### 24 · Drag & Drop
 ```rust
 {{#include ../../examples/part3/file_lens/src/bin/24_drag_drop.rs}}
@@ -35,6 +40,11 @@
 ### 25 · 파일 입출력
 ```rust
 {{#include ../../examples/part3/file_lens/src/bin/25_file_io.rs}}
+```
+
+### 25A · 백그라운드 파일 입출력
+```rust
+{{#include ../../examples/part3/file_lens/src/bin/25a_background_file_io.rs}}
 ```
 
 ### 26 · 상태 관리

@@ -154,4 +154,4 @@ V1 → V2 → V3처럼 한 단계씩 이동하는 migration pipeline을 설계�
 
 ## 다음 챕터
 
-Part 2에서 플레이 가능한 2D 게임을 만든 뒤 [19A. 게임 상태 저장과 불러오기](19A_SaveGameRoundTrip.md)에서 이 모델을 실제 Session과 연결합니다.
+[12D. ECS 동작 추상화와 스킬 시스템](12D_BehaviorAbstraction.md)에서 Component·System·Query·Message를 하나의 확장 가능한 실행 구조로 결합합니다. Part 2에서 플레이 가능한 2D 게임을 만든 뒤 [19A. 게임 상태 저장과 불러오기](19A_SaveGameRoundTrip.md)에서 저장 모델을 실제 Session과 연결합니다.

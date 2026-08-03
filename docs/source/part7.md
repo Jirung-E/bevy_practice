@@ -81,9 +81,19 @@
 {{#include ../../examples/part7/production_structure/src/bin/44_ecs_architecture.rs}}
 ```
 
+### 44A · 결정론적 입력 리플레이
+```rust
+{{#include ../../examples/part7/production_structure/src/bin/44a_deterministic_replay.rs}}
+```
+
 ### 45 · Optimization
 ```rust
 {{#include ../../examples/part7/production_structure/src/bin/45_optimization.rs}}
+```
+
+### 45A · 조건부 오브젝트 풀링 비교
+```rust
+{{#include ../../examples/part7/production_structure/src/bin/45a_pooling_comparison.rs}}
 ```
 
 ## 46 · 배포 스크립트

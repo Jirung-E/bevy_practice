@@ -79,10 +79,10 @@ SystemSet을 지나치게 세분화하면 모든 System이 직렬화됩니다. �
 
 ## 심화 과제
 
-고정 시간 Simulation과 가변 시간 Presentation을 분리하고 입력 버퍼를 통해 Update와 FixedUpdate 사이 데이터를 전달하세요.
+고정 시간 Simulation과 가변 시간 Presentation을 분리할 SystemSet을 설계하고, 어떤 데이터가 두 Schedule 사이 계약이 될지 표로 정리하세요. 실제 입력 기록과 재생 구현은 다음 챕터에서 진행합니다.
 
 [선택형 과제 해설과 수행 예시 보기](exercises/part7/44_ecs_architecture.md)
 
 ## 다음 챕터
 
-프로파일링 진단과 변경 감지를 적용하고, 추측이 아닌 측정 기반 최적화 절차를 정리합니다.
+같은 초기 상태와 입력이 같은 결과를 만드는 결정론적 FixedUpdate와 입력 리플레이를 구현합니다.

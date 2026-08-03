@@ -44,6 +44,22 @@ AssetServer::load("images/space_survivor_preview.png")
 
 `Handle<Image>`는 이미지 픽셀 전체가 아닙니다. Bevy의 `Assets<Image>` 저장소에 들어갈 이미지의 ID를 보관하는 값싼 참조입니다. 같은 Handle을 여러 Entity가 복제해도 이미지 본문이 반복 복사되지 않습니다.
 
+### Handle이 Asset 수명을 결정한다
+
+`AssetServer::load`와 `Assets::add`가 돌려주는 일반 Handle은 강한 참조입니다. Handle을 clone하면 본문이 아니라 강한 참조 수만 늘어납니다. 마지막 강한 Handle이 사라지면 `AssetEvent::Unused`가 발생하고, 더 이상 필요한 참조가 없으므로 Asset 저장소에서도 제거될 수 있습니다.
+
+```text
+LessonAssets Resource ─┐
+Sprite Entity ─────────┼─ Handle<Image> clones → Assets<Image>의 본문 1개
+UI Image Entity ───────┘
+
+세 Handle 제거 → Unused → Asset 제거 → 같은 경로가 필요하면 다시 로드
+```
+
+Entity를 despawn했어도 `LessonAssets` Resource가 Handle을 계속 보관하면 Asset은 살아 있습니다. 반대로 Loading System의 지역 변수에만 Handle을 두고 프레임 끝에 버리면 준비되기 전에 로드가 취소되거나, 로드 후 바로 사용되지 않는 Asset이 될 수 있습니다. 필요한 수명 범위를 가진 Resource나 Component에 Handle을 보관해야 합니다.
+
+`Handle::default()`나 Asset ID만 저장해 수명 관리를 우회하지 마세요. 실제 사용 Entity가 강한 Handle을 갖는 구조가 소유 관계를 가장 분명하게 만듭니다.
+
 기본 에셋 루트는 실행할 때 사용하는 프로젝트의 `assets/` 디렉터리입니다. 이 챕터의 실제 파일은 다음 위치에 있습니다.
 
 ```text
@@ -97,6 +113,7 @@ fn check_loading(
 
 - `AssetServer::load`는 로드가 끝날 때까지 기다리지 않고 즉시 Handle을 반환합니다.
 - Handle을 Resource에 보관하므로 Loading과 Ready 상태의 여러 System이 같은 에셋을 참조할 수 있습니다.
+- Ready 화면의 Sprite에도 Handle clone이 들어가며, Resource와 Entity 중 하나가 남아 있는 동안 Asset은 유지됩니다.
 - `get_load_state`에는 Handle의 ID를 전달합니다.
 - `NotLoaded`와 `Loading`에서는 현재 상태를 유지합니다.
 - `Loaded`가 되면 `NextState<AppState>`로 Ready 전환을 예약합니다.
@@ -112,10 +129,11 @@ fn check_loading(
 1. Ready 화면에 이미지 Handle을 공유하는 Sprite를 하나 더 추가하세요.
 2. PNG 파일 이름을 임시로 바꿔 Failed 화면이 나타나는지 확인한 뒤 원래대로 복구하세요.
 3. Loading, Ready, Failed 상태의 진입과 이탈을 로그로 출력하세요.
+4. Ready 화면 Entity와 `LessonAssets` Resource를 차례로 제거하고 `AssetEvent<Image>`의 `Unused`·`Removed`를 관찰하세요.
 
 ## 심화 과제
 
-이미지, 오디오, Scene처럼 여러 Handle을 가진 `LessonAssets`를 만들고 전체 로드 수와 완료 수를 계산해 진행률을 표시하세요. 실패한 경로는 별도 목록으로 모으고 각 에셋 타입에 맞는 fallback 정책을 설계하세요.
+이미지, 오디오, Scene처럼 여러 Handle을 가진 `LessonAssets`를 만들고 전체 로드 수와 완료 수를 계산해 진행률을 표시하세요. 실패한 경로는 별도 목록으로 모으고 각 에셋 타입에 맞는 fallback 정책을 설계하세요. 메뉴 전용과 게임 전용 Handle Resource를 분리해 State 이탈 시 어느 그룹이 언로드 가능한지도 표로 정리하세요.
 
 과제를 먼저 직접 수행한 뒤 필요할 때 [힌트와 수행 예시](exercises/part1/12a_asset_loading.md)를 확인하세요.
 

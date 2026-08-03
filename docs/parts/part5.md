@@ -7,4 +7,5 @@ TPS 캐릭터, 카메라, 애니메이션, 물리와 경로 탐색을 하나의 
 - [33. 캐릭터 애니메이션](../33_Animation.md)
 - [33A. glTF 캐릭터와 실제 애니메이션](../33A_GltfCharacterAnimation.md)
 - [34. Avian 3D 물리](../34_Physics.md)
+- [34A. TPS 카메라 충돌](../34A_TpsCameraCollision.md)
 - [35. Landmass NavMesh](../35_NavMesh.md)

@@ -156,4 +156,4 @@ if let Some(parent) = record.parent
 
 ## 다음 챕터
 
-Part 7에서는 완성된 기능을 Plugin과 모듈 경계로 나누고 실제 프로젝트 구조로 발전시킵니다.
+Entity에 Script Asset을 연결하고 실행 중 파일 변경을 Hot Reload합니다.

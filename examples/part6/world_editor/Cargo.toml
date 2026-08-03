@@ -6,6 +6,10 @@ license.workspace = true
 rust-version.workspace = true
 
 [dependencies]
-bevy.workspace = true
+bevy = { workspace = true, features = ["file_watcher"] }
 ron.workspace = true
 serde.workspace = true
+
+[[bin]]
+name = "script_attachment"
+path = "src/bin/40b_script_attachment.rs"

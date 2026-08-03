@@ -8,3 +8,10 @@ rust-version.workspace = true
 [dependencies]
 bevy.workspace = true
 
+[[bin]]
+name = "deterministic_replay"
+path = "src/bin/44a_deterministic_replay.rs"
+
+[[bin]]
+name = "pooling_comparison"
+path = "src/bin/45a_pooling_comparison.rs"

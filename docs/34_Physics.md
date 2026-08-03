@@ -135,4 +135,4 @@ fn is_walkable_ground(normal: Vec3, max_slope_degrees: f32) -> bool {
 
 ## 다음 챕터
 
-bevy_landmass NavMesh 위에 적 에이전트를 만들고 플레이어를 경로 목표로 지정합니다.
+SpatialQuery로 플레이어와 원하는 카메라 위치 사이를 검사해 TPS 카메라의 벽 관통을 막습니다.

@@ -35,6 +35,10 @@ name = "commands"
 path = "src/bin/10_commands.rs"
 
 [[bin]]
+name = "entity_lifecycle"
+path = "src/bin/10a_entity_lifecycle.rs"
+
+[[bin]]
 name = "messages"
 path = "src/bin/11_messages.rs"
 
@@ -57,3 +61,19 @@ path = "src/bin/dynamic_world_solution.rs"
 [[bin]]
 name = "save_game_model"
 path = "src/bin/12c_save_game_model.rs"
+
+[[bin]]
+name = "behavior_abstraction"
+path = "src/bin/12d_behavior_abstraction.rs"
+
+[[bin]]
+name = "input_actions"
+path = "src/bin/12e_input_actions.rs"
+
+[[bin]]
+name = "fixed_update"
+path = "src/bin/12f_fixed_update.rs"
+
+[[bin]]
+name = "ecs_testing"
+path = "src/bin/12g_ecs_testing.rs"

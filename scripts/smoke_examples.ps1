@@ -40,7 +40,8 @@ foreach ($binary in $binaries) {
     if ($currentPackage -ne $binary.Package) {
         $currentPackage = $binary.Package
         Write-Output "Building package $currentPackage..."
-        cargo build --package $currentPackage --bins
+        # Bevy bin 여러 개를 동시에 링크하면 Windows의 메모리/PDB 한도를 넘기기 쉽습니다.
+        cargo build --jobs 1 --package $currentPackage --bins
         if ($LASTEXITCODE -ne 0) {
             throw "$currentPackage 스모크 실행 파일 빌드가 실패했습니다."
         }

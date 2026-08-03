@@ -6,5 +6,12 @@ license.workspace = true
 rust-version.workspace = true
 
 [dependencies]
-bevy.workspace = true
+bevy = { workspace = true, features = ["system_font_discovery"] }
 
+[[bin]]
+name = "text_input_focus"
+path = "src/bin/23a_text_input_focus.rs"
+
+[[bin]]
+name = "background_file_io"
+path = "src/bin/25a_background_file_io.rs"

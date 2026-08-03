@@ -54,7 +54,8 @@ for row in "${binaries[@]}"; do
     if [[ "$package" != "$current_package" ]]; then
         current_package="$package"
         echo "Building package $current_package..."
-        cargo build --package "$current_package" --bins || exit 1
+        # Keep peak linker memory bounded on CI and developer machines.
+        cargo build --jobs 1 --package "$current_package" --bins || exit 1
     fi
 
     executable="$workspace/target/debug/$binary"

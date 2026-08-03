@@ -65,7 +65,7 @@ fn follow_player(
 
 ## 심화 과제
 
-카메라와 플레이어 사이에 장애물이 있으면 SpatialQuery raycast로 거리를 줄여 벽 관통을 막으세요.
+카메라 거리와 pitch의 최솟값·최댓값을 Resource로 옮기고, 잘못된 범위가 들어오지 않게 생성 시 검증하세요. 벽 관통 방지는 물리 질의가 필요한 고급 내용이므로 34A에서 실행 예제와 함께 구현합니다.
 
 [선택형 과제 해설과 수행 예시 보기](exercises/part5/32_tps_camera.md)
 

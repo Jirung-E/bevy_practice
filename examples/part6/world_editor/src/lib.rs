@@ -1,4 +1,5 @@
 use bevy::{
+    camera::Viewport,
     input::mouse::{MouseMotion, MouseWheel},
     picking::pointer::PointerButton,
     prelude::*,
@@ -58,6 +59,13 @@ struct ConsoleText;
 
 #[derive(Component)]
 struct EditorCamera;
+
+#[derive(Component)]
+struct ViewportInfoText;
+
+const HIERARCHY_WIDTH: f32 = 250.0;
+const INSPECTOR_WIDTH: f32 = 285.0;
+const CONSOLE_HEIGHT: f32 = 158.0;
 
 #[derive(Component, Clone, Copy)]
 enum EditorAction {
@@ -139,7 +147,9 @@ pub fn run(config: LessonConfig) {
                 update_hierarchy,
                 update_inspector,
                 update_console,
+                update_editor_viewport,
                 orbit_viewport,
+                show_viewport_cursor,
                 draw_selection_gizmo,
             )
                 .chain(),
@@ -150,6 +160,7 @@ pub fn run(config: LessonConfig) {
 fn setup(
     mut commands: Commands,
     config: Res<LessonConfig>,
+    window: Single<&Window>,
     mut selection: ResMut<Selection>,
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
@@ -192,10 +203,14 @@ fn setup(
     selection.0 = Some(first);
     commands.insert_resource(editor_assets);
 
-    if config.viewport {
+    let ui_camera = if config.viewport {
         commands.spawn((
             EditorCamera,
             Camera3d::default(),
+            Camera {
+                viewport: editor_viewport(&window, &config),
+                ..default()
+            },
             AmbientLight {
                 color: Color::srgb(0.32, 0.38, 0.5),
                 brightness: 190.0,
@@ -203,11 +218,21 @@ fn setup(
             },
             Transform::from_xyz(6.0, 6.0, 10.0).looking_at(Vec3::ZERO, Vec3::Y),
         ));
+        commands
+            .spawn((
+                Camera2d,
+                Camera {
+                    order: 1,
+                    clear_color: ClearColorConfig::None,
+                    ..default()
+                },
+            ))
+            .id()
     } else {
-        commands.spawn(Camera2d);
-    }
+        commands.spawn(Camera2d).id()
+    };
 
-    setup_editor_ui(&mut commands, &config);
+    setup_editor_ui(&mut commands, &config, ui_camera);
 }
 
 fn spawn_editable(
@@ -229,7 +254,7 @@ fn spawn_editable(
         .id()
 }
 
-fn setup_editor_ui(commands: &mut Commands, config: &LessonConfig) {
+fn setup_editor_ui(commands: &mut Commands, config: &LessonConfig, ui_camera: Entity) {
     commands
         .spawn((
             Node {
@@ -238,6 +263,7 @@ fn setup_editor_ui(commands: &mut Commands, config: &LessonConfig) {
                 ..default()
             },
             Pickable::IGNORE,
+            UiTargetCamera(ui_camera),
         ))
         .with_children(|root| {
             root.spawn((
@@ -321,6 +347,24 @@ fn setup_editor_ui(commands: &mut Commands, config: &LessonConfig) {
                         editor_button("CUBE", EditorAction::CreateCube),
                         editor_button("SPHERE", EditorAction::CreateSphere)
                     ],
+                ));
+            }
+
+            if config.viewport {
+                root.spawn((
+                    ViewportInfoText,
+                    Text::new("VIEWPORT: cursor outside"),
+                    TextFont {
+                        font_size: FontSize::Px(14.0),
+                        ..default()
+                    },
+                    TextColor(Color::srgb(0.55, 0.85, 0.95)),
+                    Node {
+                        position_type: PositionType::Absolute,
+                        left: px(HIERARCHY_WIDTH + 14.0),
+                        top: px(12),
+                        ..default()
+                    },
                 ));
             }
 
@@ -574,6 +618,7 @@ fn orbit_viewport(
     mut motion: MessageReader<MouseMotion>,
     mut wheel: MessageReader<MouseWheel>,
     mut orbit: ResMut<Orbit>,
+    window: Single<&Window>,
     camera: Option<Single<&mut Transform, With<EditorCamera>>>,
 ) {
     if !config.viewport {
@@ -582,12 +627,17 @@ fn orbit_viewport(
         return;
     }
     let delta = motion.read().map(|event| event.delta).sum::<Vec2>();
-    if buttons.pressed(MouseButton::Right) {
+    let cursor_in_viewport = window
+        .cursor_position()
+        .is_some_and(|cursor| cursor_in_editor_viewport(cursor, &window, &config));
+    if cursor_in_viewport && buttons.pressed(MouseButton::Right) {
         orbit.yaw -= delta.x * 0.005;
         orbit.pitch = (orbit.pitch - delta.y * 0.005).clamp(-1.3, 0.1);
     }
     for event in wheel.read() {
-        orbit.radius = (orbit.radius - event.y * 0.6).clamp(4.0, 20.0);
+        if cursor_in_viewport {
+            orbit.radius = (orbit.radius - event.y * 0.6).clamp(4.0, 20.0);
+        }
     }
     if let Some(mut camera) = camera {
         let rotation = Quat::from_euler(EulerRot::YXZ, orbit.yaw, orbit.pitch, 0.0);
@@ -596,6 +646,98 @@ fn orbit_viewport(
             Transform::from_translation(target + rotation * Vec3::new(0.0, 0.0, orbit.radius))
                 .looking_at(target, Vec3::Y);
     }
+}
+
+fn editor_viewport(window: &Window, config: &LessonConfig) -> Option<Viewport> {
+    if !config.viewport {
+        return None;
+    }
+    let scale = window.scale_factor();
+    let left = (HIERARCHY_WIDTH * scale).round() as u32;
+    let right = if config.inspector {
+        (INSPECTOR_WIDTH * scale).round() as u32
+    } else {
+        0
+    };
+    let bottom = if config.console {
+        (CONSOLE_HEIGHT * scale).round() as u32
+    } else {
+        0
+    };
+    Some(Viewport {
+        physical_position: UVec2::new(left, 0),
+        physical_size: UVec2::new(
+            window.physical_width().saturating_sub(left + right).max(1),
+            window.physical_height().saturating_sub(bottom).max(1),
+        ),
+        ..default()
+    })
+}
+
+fn update_editor_viewport(
+    config: Res<LessonConfig>,
+    window: Single<&Window>,
+    camera: Option<Single<&mut Camera, With<EditorCamera>>>,
+) {
+    let Some(mut camera) = camera else { return };
+    let expected = editor_viewport(&window, &config);
+    let changed = camera.viewport.as_ref().map(|viewport| {
+        (viewport.physical_position, viewport.physical_size)
+    }) != expected.as_ref().map(|viewport| {
+        (viewport.physical_position, viewport.physical_size)
+    });
+    if changed {
+        camera.viewport = expected;
+    }
+}
+
+fn cursor_in_editor_viewport(cursor: Vec2, window: &Window, config: &LessonConfig) -> bool {
+    let right = if config.inspector { INSPECTOR_WIDTH } else { 0.0 };
+    let bottom = if config.console { CONSOLE_HEIGHT } else { 0.0 };
+    cursor.x >= HIERARCHY_WIDTH
+        && cursor.x < window.width() - right
+        && cursor.y >= 0.0
+        && cursor.y < window.height() - bottom
+}
+
+fn show_viewport_cursor(
+    config: Res<LessonConfig>,
+    window: Single<&Window>,
+    camera: Option<Single<(&Camera, &GlobalTransform), With<EditorCamera>>>,
+    text: Option<Single<&mut Text, With<ViewportInfoText>>>,
+    mut gizmos: Gizmos,
+) {
+    let (Some(camera), Some(mut text), Some(cursor)) =
+        (camera, text, window.cursor_position())
+    else {
+        return;
+    };
+    if !cursor_in_editor_viewport(cursor, &window, &config) {
+        text.0 = "VIEWPORT: cursor outside".into();
+        return;
+    }
+    let (camera, transform) = *camera;
+    let Ok(ray) = camera.viewport_to_world(transform, cursor) else {
+        return;
+    };
+    let Some(point) = ray.plane_intersection_point(Vec3::ZERO, InfinitePlane3d::new(Vec3::Y))
+    else {
+        return;
+    };
+    text.0 = format!(
+        "LOGICAL ({:.0}, {:.0})  WORLD ({:.2}, {:.2}, {:.2})  DPI {:.2}",
+        cursor.x,
+        cursor.y,
+        point.x,
+        point.y,
+        point.z,
+        window.scale_factor()
+    );
+    gizmos.circle(
+        Isometry3d::new(point + Vec3::Y * 0.02, Quat::from_rotation_x(-std::f32::consts::FRAC_PI_2)),
+        0.18,
+        Color::srgb(0.2, 0.9, 1.0),
+    );
 }
 
 fn draw_selection_gizmo(

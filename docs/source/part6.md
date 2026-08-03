@@ -41,3 +41,15 @@
 ```rust
 {{#include ../../examples/part6/world_editor/src/bin/40a_scene_io.rs}}
 ```
+
+### 40B · 스크립트 연결과 Hot Reload
+
+```rust
+{{#include ../../examples/part6/world_editor/src/bin/40b_script_attachment.rs}}
+```
+
+#### RON 스크립트
+
+```ron
+{{#include ../../examples/part6/world_editor/assets/scripts/spin_and_bob.editor_script}}
+```
